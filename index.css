@@ -152,23 +152,3 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
-
-.tag {
-  background-color: white;
-  border: 1px solid rgba(11, 19, 43, 0.2);
-  color: #0b132b;
-  display: inline;
-  font-size: 16px;
-  margin: 3px 1px;
-  max-height: 55px;
-  padding: 10px;
-  /* text-overflow: wrap; */
-  transition: 0.05s;
-  width: max-content;
-}
-
-.tag:hover, .tag.change {
-  border-color: #fff0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  color: #44bba4;
-}
