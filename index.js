@@ -57,7 +57,7 @@ function sortBy(attr) {
 //   }
 // }
 
-function search() {
+function filterSearch() {
 	let input, cards, content;
 	input = document.getElementById("filter-input").value.trim();
 	cards = document.getElementsByClassName("review");
@@ -82,9 +82,6 @@ function search() {
 }
 
 function filter(attr, attrValue) {
-    // clear filters
-    filters = [];
-    
 	// declare variables
 	cards = document.getElementsByClassName("review");
 	selector = `[${attr}=${attrValue}]`;
@@ -185,4 +182,24 @@ function showHint(str) {
 		xmlhttp.open("GET", "search.php?q=" + str, true);
 		xmlhttp.send();
 	}
+}
+
+function createModal() {
+    var title, content, text;
+
+    // get info from selected card
+    title = this.querySelector("h5").innerText;
+    content = this.querySelector('.content').innerHTML;
+
+    // create the modal and add all necessary attributes, classes, and info
+    modal = document.createElement("div");
+    modal.id = "modal";
+    modal.className = "modal fade";
+    modal.tabIndex = "-1";
+    modal.role = "dialog";
+    modal.innerHTML = `<div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">${title}</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="modal.remove();"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body d-flex flex-column">${content}</div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="modal.remove();">Close</button> </div> </div> </div>`;
+    document.body.appendChild(modal); 
+
+    // open the modal
+    $("#modal").modal();
 }

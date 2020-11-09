@@ -31,20 +31,20 @@
                 <div class="col-3 align-self-left">
                 </div>
                 <div class="col-6 text-center">
-                    <a class="blog-header-logo text-dark d-none d-sm-block" href="#">EtO-Free</a>
+                    <a class="blog-header-logo d-none d-sm-block" href="#">EtO-Free</a>
                     <a class="d-block d-sm-none" href="#">
                         <img class="img-fluid mx-auto" src="assets/images/logo.png"
                             style="height: 75px; border: 3px dotted var(--dark); border-radius: 100%;" />
                     </a>
                 </div>
                 <div class="col-3 align-self-right text-right">
-                    <a class="btn fa fa-search text-dark" href="#" style="font-size: x-large;"></a>
+                    <a class="btn fa fa-search text-dark invisible" href="#" style="font-size: x-large;"></a>
                 </div>
             </div>
         </header>
-
+    
         <div class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex align-items-center justify-content-between">
+            <nav id="navigation" class="nav d-flex align-items-center justify-content-between">
                 <a class="p-2 text-muted" href="index.html">Home</a>
                 <a class="p-2 text-muted" href="about.html">About</a>
                 <a class="p-2 text-muted" href="eto.html">What is Ethylene Oxide?</a>
@@ -57,42 +57,48 @@
     <main role="main" class="container my-5">
         <div class="row">
             <div class="col-md-8 col-lg-9 p-0 d-flex flex-row flex-wrap align-items-stretch">
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Badger Healthy Body Care" >
                     <div class="card card-body">
                         <h5 class="card-title">Badger Healthy Body Care</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Jane Iredale" >
                     <div class="card card-body">
                         <h5 class="card-title">Jane Iredale</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Sia Botanics" >
                     <div class="card card-body">
                         <h5 class="card-title">Sia Botanics</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="SkinOwl" >
                     <div class="card card-body">
                         <h5 class="card-title">SkinOwl</h5>
                         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="First Aid Beauty" >
                     <div class="card card-body">
                         <h5 class="card-title">First Aid Beauty</h5>
                         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Thesis" >
                     <div class="card card-body">
                         <h5 class="card-title">Thesis</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
@@ -100,7 +106,8 @@
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Naturium" >
                     <div class="card card-body">
                         <h5 class="card-title">Naturium</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
@@ -108,7 +115,8 @@
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Christian Moss Naturals" >
                     <div class="card card-body">
                         <h5 class="card-title">Christina Moss Natural</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -118,7 +126,8 @@
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Nourish Organics" >
                     <div class="card card-body">
                         <h5 class="card-title">Nourish Organic</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
@@ -128,7 +137,8 @@
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Tammy Fender" >
                     <div class="card card-body">
                         <h5 class="card-title">Tammy Fender</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
@@ -136,7 +146,8 @@
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="May Lindstrom Care" >
                     <div class="card card-body">
                         <h5 class="card-title">May Lindstrom Care</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
@@ -144,7 +155,8 @@
                     </div>
                 </div>
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column">
+                <div class="review col-lg-4 p-2 m-0 d-flex flex-column"
+                    data-name="Laurel WHole Plant Organica" >
                     <div class="card card-body">
                         <h5 class="card-title">Laurel Whole Plant Organica</h5>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
@@ -154,7 +166,6 @@
             </div><!-- / .card-row -->
 
             <aside class="col-md-4 col-lg-3 blog-sidebar mx-0 p-2">
-
                 <div id="accordion" class="card">
                     <div class="card-body">
                         <h5>Searching for a specific brand? Look it up!</h5>
@@ -171,9 +182,7 @@
                         </div>
                     </div>
                 </div> <!-- card -->
-
             </aside><!-- /.blog-sidebar -->
-
         </div> <!-- row -->
     </main><!-- /.container -->
 
