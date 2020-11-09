@@ -170,13 +170,13 @@ sup {
 }
 
 a {
-    color: var(--yellow);
+    color: var(--turquoise);
     text-decoration: none;
     background-color: transparent;
 }
 
 a:hover {
-    color: var(--dark-sienna);
+    color: var(--yellow);
     text-decoration: underline;
 }
 
