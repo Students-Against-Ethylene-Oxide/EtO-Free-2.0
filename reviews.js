@@ -21,17 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
 			cardrow.innerHTML = "";
 			for (let i = idArray.length - 1; i >= 0; i--) {
 				$("#reviews-cards").append(
-					`<div id="${idArray[i]}"class="review col-lg-4 p-2 m-0 d-flex flex-column" 
+					`<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column" 
                     data-company="${dataArrayValues[i].company}" 
-                    data-date="${dataArrayValues[i].date}"
-                    data-name="${dataArrayValues[i].name}" 
+                    data-date="${idArray[i]}"
+                    data-name="${dataArrayValues[i].title}" 
                     data-prodtype="${dataArrayValues[i].producttype}" 
                     data-skintype="${dataArrayValues[i].skintype}">
-                        <a href="#" onclick="createModal.call(this);" class=" list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
+                        <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
                             <div class="card">
-                                <img class="card-img-top" src="assets/images/${idArray[i]}.jpeg" onerror="this.onerror = null; this.src='assets/images/${idArray[i]}.jpg'" alt="Card image cap">
+                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpeg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpg'" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">${dataArrayValues[i].name}</h5>
+                                    <h5 class="card-title">${dataArrayValues[i].title}</h5>
                                     <div class="content">
                                         <div class="embed-responsive embed-responsive-1by1 align-self-center w-50 mt-3 mb-5">
                                             <iframe src="${dataArrayValues[i].ytlink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

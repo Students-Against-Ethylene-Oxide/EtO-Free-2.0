@@ -16,22 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
 			dataArrayValues = Object.values(data);
 
 			// Tables are repeating user information when firebase information updates.
-			// cardrow.innerHTML = "";
+			cardrow.innerHTML = "";
             for (let i = idArray.length - 1; i > idArray.length - 3; i--) {
-                date = new Date(dataArrayValues[i].date)
+                date = new Date(idArray[i])
                 console.log(Date);
 				$("#posts-cards").append(
 					`<div class="col-md-6">
                         <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start w-50">
+                            <div class="card-body d-flex flex-column align-items-start w-md-50">
                                 <h4 class="mb-0">
-                                    <a class="text-dark" href="reviews.html#${idArray[i]}">${dataArrayValues[i].name}</a>
+                                    <a class="text-dark" href="reviews.html#${dataArrayValues[i].name}">${dataArrayValues[i].title}</a>
                                 </h4>
                                 <div class="mb-1 text-muted">${date.toDateString()}</div>
-                                <a href="reviews.html#${idArray[i]}">Continue reading</a>
+                                <a href="reviews.html#${dataArrayValues[i].name}">Continue reading</a>
                             </div>
                             <div class="w-50">
-                                <img class="card-img-right img-fluid flex-auto d-none d-md-block" src="assets/images/${idArray[i]}.jpeg" onerror="this.onerror = null; this.src='assets/images/${idArray[i]}.jpg'"
+                                <img class="card-img-right img-fluid flex-auto d-none d-md-block" src="assets/images/${dataArrayValues[i].name}.jpeg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpg'"
                                 alt="Card image cap">
                             </div>
                         </div>
