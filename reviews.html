@@ -10,32 +10,6 @@
 
     <title>EtO-Free Skincare</title>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
-
-    <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-        apiKey: "AIzaSyDScyq-fqMgvf4w9MSrSV1M4u_7vDwYAmc",
-        authDomain: "eto-free.firebaseapp.com",
-        databaseURL: "https://eto-free-default-rtdb.firebaseio.com",
-        projectId: "eto-free",
-        storageBucket: "eto-free.appspot.com",
-        messagingSenderId: "6199154180",
-        appId: "1:6199154180:web:301e6c066ffdd14264c751",
-        measurementId: "G-NPWBJH7NJ3"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    </script>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-reboot.css">
@@ -48,9 +22,6 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-    <!-- Database JS -->
-    <script src="db.js"></script>
 </head>
 
 <body>
@@ -86,116 +57,6 @@
     <main role="main" class="container my-5">
         <div class="row">
             <div id="reviews-cards" class="col-md-8 col-lg-9 p-0 d-flex flex-row flex-wrap align-items-stretch">
-
-                <!-- <div class="review col-lg-4 p-2 m-0 d-flex flex-column" data-company="thesis" 
-                data-date="2020-11-08T12:00:00.000Z"
-                data-name="Thesis Beauty Facial Cleansing Oil Rosemary Citrus" 
-                data-prodtype="cleanser" 
-                data-skintype="any">
-                    <a href="#" onclick="createModal.call(this);" class=" list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/images/thesis-cleansing-oil-4.jpeg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Thesis Beauty Facial Cleansing Oil - Rosemary Citrus</h5>
-                                <div class="content">
-                                    <div class="embed-responsive embed-responsive-1by1 align-self-center w-50 mt-3 mb-5">
-                                        <iframe src="https://www.youtube.com/embed/mF--moE3eqY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                    <!-- <p class="card-text">
-                                        <b>Main ingredients:</b> Jojoba Oil, Apricot Oil, Sunflower Oil, Sweet Orange Essential Oil.
-                                    </p> ->
-                                    <p class="card-text">
-                                        The Thesis Beauty Facial Cleansing Oil is a blend of different oils that will leave your skin feeling luxurious. Thesis Beauty Cleansing oil uses jojoba oil as one of its main ingredients. Jojoba oil is an antioxidant that helps to control the production of sebum and soothes eczema prone skin. Another beneficial oil that is used is Apricot Oil. Apricot oil will soften and rejuvenate your skin, making it velvety soft. Sunflower oil is also an important component to this cleansing oil as it prevents blemishing, and it is easily absorbed into your skin without clogging your pores. Sunflower oil also prevents acne causing bacteria and prevents major breakouts on your skin. The last beneficial component to the Thesis Beauty cleansing oil is the sweet orange essence. This essence is proven to put you in an uplifting and content mood that will keep you relaxed and calm all day long.
-                                    </p>
-                                    <p class="card-text">
-                                        <b>Ingredients:</b>
-                                    </p>
-                                    <ul>
-                                        <li>Organic Jojoba Oil</li>
-                                        <li>Organic Apricot Oil</li>
-                                        <li>Organic Sunflower Oil</li>
-                                        <li>Organic Sweet Orange Essential Oil</li>
-                                        <li>Organic Spearmint Essential Oil</li>
-                                        <li>Organic Rosemary Essential Oil</li>
-                                        <li>Organic Rosemary Extract</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column" data-company="thesis" 
-                data-date="2020-11-29T12:00:00.000Z"
-                data-name="First Aid Beauty Weightless Liquid Mineral Sunscreen" 
-                data-prodtype="cleanser" 
-                data-skintype="any">
-                    <a href="#" onclick="createModal.call(this);" class=" list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/images/first-aid-beauty-weightless-liquid-sunscreen.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">First Aid Beauty Weightless Liquid Mineral Sunscreen with Zinc Oxide SPF 30</h5>
-                                <div class="content">
-                                    <div class="embed-responsive embed-responsive-1by1 align-self-center w-50 mt-3 mb-5">
-                                        <iframe src="https://www.youtube.com/embed/0wl8Cm5bw64" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                    <!-- <p class="card-text">
-                                        <b>Main ingredients:</b> Zinc Oxide, Water.
-                                    </p> ->
-                                    <p class="card-text">
-                                        The First Aid Beauty Weightless Liquid Mineral sunscreen has 3 main ingredients that will make your skin feel nourished and soft. Zinc oxide is one of the most important components that is used in this sunscreen. Zinc oxide is used in products as a skin protectant because it reflects and scatters UV radiation. Zinc Oxide also prevents sunburn and aging. Another essential ingredient used in this sunscreen is the Alteromonas Ferment Filtrate. This component moisturizes and leaves your skin feeling silky smooth. The last essential ingredient that is used in the sunscreen is Vitamin E. Vitamin E is a powerful antioxidant that will prevent your skin from aging and will leave your skin glowing. Overall this sunscreen will avert any major damage to your skin from the sun as well as any other outside sources.
-                                    </p>
-                                    <p class="card-text">
-                                        <b>Ingredients:</b>
-                                    </p>
-                                    <ul>
-                                        <li>Zinc Oxide</li>
-                                        <li>Caprylic/Capric Triglyceride</li>
-                                        <li>Aqua (Water, Eau)</li>
-                                        <li>Isododecane</li>
-                                        <li>Polymethyl Methacrylate</li>
-                                        <li>Tetradecane</li>
-                                        <li>Cetyl Diglyceryl Tris (Trimethylsiloxy) Silyl Ether Dimethicone</li>
-                                        <li>Hydrogenated Poly-Decene</li>
-                                        <li>Dimethicone</li>
-                                        <li>Polypropylene</li>
-                                        <li>Silica</li>
-                                        <li>Sodium Chloride</li>
-                                        <li>Alteromonas Ferment Filtrate</li>
-                                        <li>Camellia Sinensis Leaf Extract</li>
-                                        <li>Tetrahexyldecyl Ascorbate</li>
-                                        <li>Sorbitan Oleate</li>
-                                        <li>Glycyrrhiza Glabra (Licorice) Root Extract</li>
-                                        <li>Chrysanthemum Parthenium (Feverfew) Extract</li>
-                                        <li>Tridecane</li>
-                                        <li>Tocopheryl Acetate</li>
-                                        <li>Tocopherol</li>
-                                        <li>Acrylates Copolymer</li>
-                                        <li>Quaternium-90 Bentonite</li>
-                                        <li>Dimethicone Crosspol-Ymer</li>
-                                        <li>Octyldodecanol</li>
-                                        <li>Caprylyl Glycol</li>
-                                        <li>Polyhydroxystearic Acid</li>
-                                        <li>Polyglyceryl-3 Polyricinoleate</li>
-                                        <li>Lecithin</li>
-                                        <li>Isostearic Acid</li>
-                                        <li>Propylene Carbonate</li>
-                                        <li>Hexadecene</li>
-                                        <li>Butylene Glycol</li>
-                                        <li>Hexylene Glycol</li>
-                                        <li>Glycerin</li>
-                                        <li>Phenoxyethanol</li>
-                                        <li>Potassium Sorbate</li>
-                                        <li>Magnesium Oxide</li>
-                                        <li>Alumina</li>
-                                        <li>Ci 77891 (Titanium Dioxide)</li>
-                                        <li>Ci 77491/77492/77499 (Iron Oxides)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div> -->
 
             </div><!-- / .card-row -->
 
@@ -373,8 +234,32 @@
         </p>
     </footer>
 
-    <!-- Custom JS -->
-    <script src="index.js"></script>
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <!-- Firebase Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDScyq-fqMgvf4w9MSrSV1M4u_7vDwYAmc",
+            authDomain: "eto-free.firebaseapp.com",
+            databaseURL: "https://eto-free-default-rtdb.firebaseio.com",
+            projectId: "eto-free",
+            storageBucket: "eto-free.appspot.com",
+            messagingSenderId: "6199154180",
+            appId: "1:6199154180:web:301e6c066ffdd14264c751",
+            measurementId: "G-NPWBJH7NJ3"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+    <!-- Database JS -->
+    <script src="reviews.js"></script>
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
