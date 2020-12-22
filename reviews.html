@@ -10,25 +10,13 @@
 
     <title>EtO-Free Skincare</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-reboot.css">
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
-
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 
     <script>
     // Your web app's Firebase configuration
@@ -47,6 +35,22 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     </script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- Database JS -->
+    <script src="db.js"></script>
 </head>
 
 <body>
@@ -83,7 +87,7 @@
         <div class="row">
             <div id="reviews-cards" class="col-md-8 col-lg-9 p-0 d-flex flex-row flex-wrap align-items-stretch">
 
-                <div class="review col-lg-4 p-2 m-0 d-flex flex-column" data-company="thesis" 
+                <!-- <div class="review col-lg-4 p-2 m-0 d-flex flex-column" data-company="thesis" 
                 data-date="2020-11-08T12:00:00.000Z"
                 data-name="Thesis Beauty Facial Cleansing Oil Rosemary Citrus" 
                 data-prodtype="cleanser" 
@@ -99,18 +103,9 @@
                                     </div>
                                     <!-- <p class="card-text">
                                         <b>Main ingredients:</b> Jojoba Oil, Apricot Oil, Sunflower Oil, Sweet Orange Essential Oil.
-                                    </p> -->
+                                    </p> ->
                                     <p class="card-text">
-                                        The Thesis Beauty Facial Cleansing Oil is a blend of different oils that will leave your skin
-                                        feeling luxurious. Thesis Beauty Cleansing oil uses jojoba oil as one of its main ingredients.
-                                        Jojoba oil is an antioxidant that helps to control the production of sebum and soothes eczema prone
-                                        skin. Another beneficial oil that is used is Apricot Oil. Apricot oil will soften and rejuvenate
-                                        your skin, making it velvety soft. Sunflower oil is also an important component to this cleansing
-                                        oil as it prevents blemishing, and it is easily absorbed into your skin without clogging your pores.
-                                        Sunflower oil also prevents acne causing bacteria and prevents major breakouts on your skin. The
-                                        last beneficial component to the Thesis Beauty cleansing oil is the sweet orange essence. This
-                                        essence is proven to put you in an uplifting and content mood that will keep you relaxed and calm
-                                        all day long.
+                                        The Thesis Beauty Facial Cleansing Oil is a blend of different oils that will leave your skin feeling luxurious. Thesis Beauty Cleansing oil uses jojoba oil as one of its main ingredients. Jojoba oil is an antioxidant that helps to control the production of sebum and soothes eczema prone skin. Another beneficial oil that is used is Apricot Oil. Apricot oil will soften and rejuvenate your skin, making it velvety soft. Sunflower oil is also an important component to this cleansing oil as it prevents blemishing, and it is easily absorbed into your skin without clogging your pores. Sunflower oil also prevents acne causing bacteria and prevents major breakouts on your skin. The last beneficial component to the Thesis Beauty cleansing oil is the sweet orange essence. This essence is proven to put you in an uplifting and content mood that will keep you relaxed and calm all day long.
                                     </p>
                                     <p class="card-text">
                                         <b>Ingredients:</b>
@@ -146,7 +141,7 @@
                                     </div>
                                     <!-- <p class="card-text">
                                         <b>Main ingredients:</b> Zinc Oxide, Water.
-                                    </p> -->
+                                    </p> ->
                                     <p class="card-text">
                                         The First Aid Beauty Weightless Liquid Mineral sunscreen has 3 main ingredients that will make your skin feel nourished and soft. Zinc oxide is one of the most important components that is used in this sunscreen. Zinc oxide is used in products as a skin protectant because it reflects and scatters UV radiation. Zinc Oxide also prevents sunburn and aging. Another essential ingredient used in this sunscreen is the Alteromonas Ferment Filtrate. This component moisturizes and leaves your skin feeling silky smooth. The last essential ingredient that is used in the sunscreen is Vitamin E. Vitamin E is a powerful antioxidant that will prevent your skin from aging and will leave your skin glowing. Overall this sunscreen will avert any major damage to your skin from the sun as well as any other outside sources.
                                     </p>
@@ -200,7 +195,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
 
             </div><!-- / .card-row -->
 
@@ -380,7 +375,6 @@
 
     <!-- Custom JS -->
     <script src="index.js"></script>
-    <script src="db.js"></script>
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
