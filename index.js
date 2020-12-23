@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	cardrow = document.getElementById("posts-cards");
 	let firebaseRef = firebase
 		.database()
-		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Sheet1/");
+		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Reviews/");
 
 	// Attach an asynchronous callback to read the data at our posts reference
 	firebaseRef.on(
