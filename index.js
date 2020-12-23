@@ -23,19 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
 				$("#posts-cards").append(
 					`<div class="col-md-6">
                         <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start w-md-50">
+                            <div class="card-body d-flex flex-column align-items-start w-100 w-lg-50">
                                 <h4 class="mb-0">
                                     <a class="text-dark" href="reviews.html#${dataArrayValues[i].name}">${dataArrayValues[i].title}</a>
                                 </h4>
                                 <div class="mb-1 text-muted">${date.toDateString()}</div>
                                 <a href="reviews.html#${dataArrayValues[i].name}">Continue reading</a>
                             </div>
-                            <div class="w-50">
-                                <img class="card-img-right img-fluid flex-auto d-none d-md-block" src="assets/images/${dataArrayValues[i].name}.jpeg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpg'"
-                                alt="Card image cap">
-                            </div>
+							<div class="d-none d-lg-flex flex-column align-items-center w-50" style="overflow: hidden;">
+								<img class="card-img-right d-none d-lg-block" src="assets/images/${dataArrayValues[i].name}.jpeg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpg'" alt="Card image cap" style="object-fit: cover;">
+							</div>
                         </div>
-                    </div>`
+					</div>`
 				);
 			}
 		},
