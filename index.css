@@ -203,3 +203,13 @@ footer span a {
 #navigation a:last-child {
     display: none;
 }
+
+/* custom */
+@media (min-width: 768) {
+    .h-md-auto {
+        height: auto !important;
+    }
+    .w-md-100 {
+        width: 100% !important;
+    }
+}
