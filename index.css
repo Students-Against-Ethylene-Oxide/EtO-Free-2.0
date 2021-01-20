@@ -185,6 +185,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
 }
 
+/* Custom */
+
 footer span a {
     font-size: 30px;
     margin: 0 10px;
@@ -196,20 +198,6 @@ footer span a {
     color: var(--oxford-blue);
 }
 
-.content {
-    display: none;
-}
-
 #navigation a:last-child {
     display: none;
-}
-
-/* custom */
-@media (min-width: 768) {
-    .h-md-auto {
-        height: auto !important;
-    }
-    .w-md-100 {
-        width: 100% !important;
-    }
 }

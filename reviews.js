@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpeg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpg'" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">${dataArrayValues[i].title}</h5>
-                                    <div class="content">
+                                    <div class="d-none">
                                         <div class="embed-responsive embed-responsive-1by1 align-self-center w-50 mt-3 mb-5">
                                             <iframe src="${dataArrayValues[i].ytlink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         </div>

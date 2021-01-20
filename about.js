@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+	$(".carousel").carousel({interval: 100000});
+
 	var lazyloadImages;
 
 	if ("IntersectionObserver" in window) {
