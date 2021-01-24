@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		function (snapshot) {
 			// Setting firebase data to a variable called "data"
 			data = snapshot.val();
-			dataArray = [];
-
 			idArray = Object.keys(data);
 			dataArrayValues = Object.values(data);
 
