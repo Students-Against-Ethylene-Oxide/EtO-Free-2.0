@@ -201,3 +201,7 @@ footer span a {
 #navigation a:last-child {
     display: none;
 }
+
+.content {
+    display: none;
+}
