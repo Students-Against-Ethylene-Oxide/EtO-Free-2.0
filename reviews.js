@@ -67,21 +67,37 @@ sortBy("data-name");
 function sortBy(attr) {
 	cards = document.getElementsByClassName("review");
 	// magically coerce into an array first
-	cards = Array.prototype.slice.call(cards);
+	cardArray = Array.prototype.slice.call(cards);
+    console.log(cardArray);
 
-	cards.sort(function (a, b) {
+	cardArray.sort(function (a, b) {
 		return a.getAttribute(attr).localeCompare(b.getAttribute(attr));
-	});
-	for (var i = 0; i < cards.length; i++) {
-		// store the parent node so we can reattach the item
-		var parent = cards[i].parentNode;
-		// detach it from wherever it is in the DOM
-		var detatchedItem = parent.removeChild(cards[i]);
-		// reattach it.  This works because we are iterating
-		// over the items in the same order as they were re-
-		// turned from being sorted.
-		parent.appendChild(detatchedItem);
-	}
+    });
+    if (attr != "data-date") {
+        for (var i = 0; i < cardArray.length; i++) {
+            // store the parent node so we can reattach the item
+            var parent = cardArray[i].parentNode;
+            // detach it from wherever it is in the DOM
+            var detatchedItem = parent.removeChild(cardArray[i]);
+            // reattach it.  This works because we are iterating
+            // over the items in the same order as they were re-
+            // turned from being sorted.
+            parent.appendChild(detatchedItem);
+        }
+    } else {
+        let temp = cardArray.reverse;
+        console.log(temp)
+        for (var i = 0; i < temp.length; i++) {
+            // store the parent node so we can reattach the item
+            var parent = cardArray[i].parentNode;
+            // detach it from wherever it is in the DOM
+            var detatchedItem = parent.removeChild(cardArray[i]);
+            // reattach it.  This works because we are iterating
+            // over the items in the same order as they were re-
+            // turned from being sorted.
+            parent.appendChild(detatchedItem);
+        }
+    }
 }
 
 // // function change(selector) {
@@ -120,15 +136,18 @@ function sortBy(attr) {
 // }
 
 function filterSearch() {
-	let input, cards, content;
+    let input, cards, content;
+    // get input from text box
 	input = document.getElementById("filter-input").value.trim();
 	cards = document.getElementsByClassName("review");
     
+    // hide all the cards
     for (i = 0; i < cards.length; i++) {
         cards[i].classList.remove('d-flex');
         cards[i].classList.add("d-none");
     }
 
+    // shows any cards that contain the search term
 	for (i = 0; i < cards.length; i++) {
 		content = cards[i].innerHTML.toLowerCase();
         content = content.replace(/(<([^>]+)>)/gi, "");
@@ -136,9 +155,6 @@ function filterSearch() {
         if (content.includes(input)) {
             cards[i].classList.remove("d-none");
             cards[i].classList.add("d-flex");
-        } else {
-            cards[i].classList.remove("d-flex");
-			cards[i].classList.add("d-none");
         }
 	}
 }
