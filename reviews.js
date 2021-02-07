@@ -68,7 +68,6 @@ function sortBy(attr) {
 	cards = document.getElementsByClassName("review");
 	// magically coerce into an array first
 	cardArray = Array.prototype.slice.call(cards);
-    console.log(cardArray);
 
 	cardArray.sort(function (a, b) {
 		return a.getAttribute(attr).localeCompare(b.getAttribute(attr));
@@ -86,7 +85,6 @@ function sortBy(attr) {
         }
     } else {
         let temp = cardArray.reverse;
-        console.log(temp)
         for (var i = 0; i < temp.length; i++) {
             // store the parent node so we can reattach the item
             var parent = cardArray[i].parentNode;
@@ -163,7 +161,7 @@ function filter(attr, attrValue) {
 	// declare variables
 	cards = document.getElementsByClassName("review");
 	selector = `[${attr}=${attrValue}]`;
-    console.log(this.getAttribute("data-click") == "no");
+    // console.log(this.getAttribute("data-click") == "no");
 	// if the filter has not already been clicked, apply filter
     if (this.getAttribute("data-click") == "no") {
         // add the filter to an array of applied filters
@@ -192,7 +190,7 @@ function filter(attr, attrValue) {
         index = filters.indexOf(selector);
         filters.splice(index, 1);
         this.setAttribute("data-click", "no");
-        console.log(index, filters);
+        // console.log(index, filters);
         
         // if the array is not empty, repeat the above filtering process
         if (filters.length != 0) {
@@ -206,7 +204,7 @@ function filter(attr, attrValue) {
             for (i = 0; i < filters.length; i++) {
                 // get a list of all the cards with that filter
                 selected = document.querySelectorAll(filters[i]);
-                console.log(selected);
+                // console.log(selected);
                 for (a = 0; a < selected.length; a++) {
                     selected[a].classList.toggle("d-none");
                     selected[a].classList.toggle("d-flex");
