@@ -192,7 +192,7 @@ footer span a {
     margin: 0 10px;
 }
 
-[data-click='yes'] {
+button[data-click='yes'] {
     border-color: var(--white);
     background-color: var(--white);
     color: var(--oxford-blue);

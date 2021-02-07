@@ -27,9 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     data-skintype="${dataArrayValues[i].skintype}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
                             <div class="card">
-                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpeg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpg'" alt="Card image cap">
+                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpeg'" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">${dataArrayValues[i].title}</h5>
+                                    <small>
+                                        <a class="badge badge-light" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company}');">#${dataArrayValues[i].company}</a>
+                                        <a class="badge badge-light" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype}');">#${dataArrayValues[i].producttype}</a>
+                                    </small>
                                     <div class="content">
                                         <div class="embed-responsive embed-responsive-1by1 align-self-center w-50 mt-3 mb-5">
                                             <iframe src="${dataArrayValues[i].ytlink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
