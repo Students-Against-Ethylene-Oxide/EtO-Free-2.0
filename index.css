@@ -205,3 +205,7 @@ button[data-click='yes'] {
 .content {
     display: none;
 }
+
+.tags {
+    color: #44bba4ff;
+}
