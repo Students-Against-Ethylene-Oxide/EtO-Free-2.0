@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			cardrow.innerHTML = "";
 			for (let i = idArray.length - 1; i >= 0; i--) {
 				$("#reviews-cards").append(
-					`<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column" 
+					`<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column"
                     data-company="${dataArrayValues[i].company}" 
                     data-date="${idArray[i]}"
                     data-name="${dataArrayValues[i].title}" 
@@ -27,13 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     data-skintype="${dataArrayValues[i].skintype}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
                             <div class="card">
-                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpeg'" alt="Card image cap">
+                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpeg'" alt="Card image cap" >
                                 <div class="card-body">
                                     <h5 class="card-title">${dataArrayValues[i].title}</h5>
-                                    <small>
-                                        <a class="badge badge-light" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company}');">#${dataArrayValues[i].company}</a>
-                                        <a class="badge badge-light" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype}');">#${dataArrayValues[i].producttype}</a>
-                                    </small>
                                     <div class="content">
                                         <div class="embed-responsive embed-responsive-1by1 align-self-center w-50 mt-3 mb-5">
                                             <iframe src="${dataArrayValues[i].ytlink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -48,6 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                             ${parseList(dataArrayValues[i].ingredients)}
                                         </ul>
                                     </div>
+                                    <div class="mb-1 text-muted">${new Date(idArray[i]).toDateString()}</div>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company}');">#${dataArrayValues[i].company}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype}');">#${dataArrayValues[i].producttype}</a>
                                 </div>
                             </div>
                         </a>
@@ -66,8 +65,6 @@ function parseList(str) {
 	return str.replace(/, /g, "</li><li>");
 }
 
-sortBy("data-name");
-
 function sortBy(attr) {
 	cards = document.getElementsByClassName("review");
 	// magically coerce into an array first
@@ -76,7 +73,7 @@ function sortBy(attr) {
 	cardArray.sort(function (a, b) {
 		return a.getAttribute(attr).localeCompare(b.getAttribute(attr));
     });
-    if (attr != "data-date") {
+    // if (attr != "data-date") {
         for (var i = 0; i < cardArray.length; i++) {
             // store the parent node so we can reattach the item
             var parent = cardArray[i].parentNode;
@@ -87,19 +84,19 @@ function sortBy(attr) {
             // turned from being sorted.
             parent.appendChild(detatchedItem);
         }
-    } else {
-        let temp = cardArray.reverse;
-        for (var i = 0; i < temp.length; i++) {
-            // store the parent node so we can reattach the item
-            var parent = cardArray[i].parentNode;
-            // detach it from wherever it is in the DOM
-            var detatchedItem = parent.removeChild(cardArray[i]);
-            // reattach it.  This works because we are iterating
-            // over the items in the same order as they were re-
-            // turned from being sorted.
-            parent.appendChild(detatchedItem);
-        }
-    }
+    // } else {
+    //     let temp = cardArray.reverse;
+    //     for (var i = 0; i < temp.length; i++) {
+    //         // store the parent node so we can reattach the item
+    //         var parent = cardArray[i].parentNode;
+    //         // detach it from wherever it is in the DOM
+    //         var detatchedItem = parent.removeChild(cardArray[i]);
+    //         // reattach it.  This works because we are iterating
+    //         // over the items in the same order as they were re-
+    //         // turned from being sorted.
+    //         parent.appendChild(detatchedItem);
+    //     }
+    // }
 }
 
 // // function change(selector) {
@@ -244,6 +241,8 @@ function clearFilters() {
 	for (var i = 0; i < tags.length; i++) {
 		tags[i].setAttribute("data-click", "no");
     }
+
+    sortBy("data-date");
 }
 
 function showHint(str) {
@@ -265,7 +264,7 @@ function showHint(str) {
 }
 
 function createModal() {
-    var title, content, text;
+    let title, content, text;
 
     // get info from selected card
     title = this.querySelector("h5").innerText;
