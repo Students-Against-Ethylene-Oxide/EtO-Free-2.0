@@ -1,5 +1,5 @@
 ---
 deployment:
-  tasks:
-    - export DEPLOYPATH=/home/pnd1usz1rebf/public_html/
-    - /bin/cp -R EtO-Free-2.0/ $DEPLOYPATH
+	tasks:
+		- export DEPLOYPATH=/home/pnd1usz1rebf/public_html/
+		- /bin/cp -R EtO-Free-2.0/ $DEPLOYPATH
