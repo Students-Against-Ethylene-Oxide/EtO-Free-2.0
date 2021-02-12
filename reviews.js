@@ -245,6 +245,12 @@ function clearFilters() {
     sortBy("data-date");
 }
 
+$("#scrollToFilters").click(function () {
+    $('html, body').animate({
+        scrollTop: $("#filters").offset().top
+    }, 2000);
+});
+
 function showHint(str) {
 	if (str.length == 0) {
 		document.getElementById("txtHint").innerHTML = "";
