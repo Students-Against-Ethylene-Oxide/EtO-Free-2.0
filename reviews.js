@@ -61,38 +61,64 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function parseList(str) {
-	str = `<li>${str}</li>`;
-	return str.replace(/, /g, "</li><li>");
+    str = `<li>${str}</li>`;
+    return str.replace(/, /g, "</li><li>");
 }
 
-function sortBy(attr) {
-    let sortDirection, cards, sortOptions;
+function createModal() {
+    let title, content, text;
 
-    // get the current sorting direction of the filter
-    sortDirection = this.getAttribute("data-sort-direction");
+    // get info from selected card
+    title = this.querySelector("h5").innerText;
+    content = this.querySelector('.content').innerHTML;
 
-    // get all the cards to be sorted
-	cards = document.getElementsByClassName("review");
-	// magically coerce into an array first
-	cards = Array.prototype.slice.call(cards);
-	cards.sort(function (a, b) {
-		return a.getAttribute(attr).localeCompare(b.getAttribute(attr));
-    });
+    // create the modal and add all necessary attributes, classes, and info
+    modal = document.createElement("div");
+    modal.id = "modal";
+    modal.className = "modal fade";
+    modal.tabIndex = "-1";
+    modal.role = "dialog";
+    modal.innerHTML = `<div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">${title}</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="modal.remove();"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body d-flex flex-column">${content}</div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="modal.remove();">Close</button> </div> </div> </div>`;
+    document.body.appendChild(modal); 
 
-    // sort the cards in normal or reverse order
-    if (sortDirection == "off") {
-        this.setAttribute("data-sort-direction", "forward");
-    } else if (sortDirection == "forward") {
-        Array.prototype.reverse.call(cards);
-        this.setAttribute("data-sort-direction", "reverse");
-    } else if (sortDirection == "reverse") {
-        cards.sort(function (a, b) {
-            return a.getAttribute("data-date").localeCompare(b.getAttribute("data-date"));
-        });
-        Array.prototype.reverse.call(cards);
-        this.setAttribute("data-sort-direction", "off");
+    // open the modal
+    $("#modal").modal();
+}
+
+//  Filtering functions
+$("#scrollToFilters").click(function () {
+    $('html, body').animate({
+        scrollTop: $("#filters").offset().top
+    }, 2000);
+});
+
+function clearFilters() {
+    // get all applicable elements
+    cards = document.getElementsByClassName("review");
+    tags = document.getElementsByClassName("tag");
+
+    // clear the search bar and filter array
+	filters = [];
+    document.getElementById("filter-input").value = "";
+    
+    // show all the cards
+	for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove("d-none");
+        cards[i].classList.add("d-flex");
+    }
+    
+    // reset the filter buttons
+	for (var i = 0; i < tags.length; i++) {
+		tags[i].setAttribute("data-click", "no");
     }
 
+    // return the cards to their normal order
+	cards = document.getElementsByClassName("review");
+    cards.sort(function (a, b) {
+        return a.getAttribute("data-date").localeCompare(b.getAttribute("data-date"));
+    });
+    Array.prototype.reverse.call(cards);
+    this.setAttribute("data-sort-direction", "off");
     for (var i = 0; i < cards.length; i++) {
         // store the parent node so we can reattach the item
         var parent = cards[i].parentNode;
@@ -103,58 +129,7 @@ function sortBy(attr) {
         // turned from being sorted.
         parent.appendChild(detatchedItem);
     }
-
-    // return the other sorting options to their default state 
-    // so that they start again normally next time they are used.
-    let defaults = {
-        sortName: "off",
-        sortCompany: "off",
-        sortProduct: "off",
-        sortDate: "reverse"
-    }
-
-    sortOptions = document.querySelectorAll(`[data-sort-direction]:not(#${this.id})`);
-    for (let i = 0; i < sortOptions.length; i++) {
-        let thisDefault = defaults[sortOptions[i].id];
-        console.log(sortOptions[i].id + ": " + thisDefault);
-        sortOptions[i].setAttribute("data-sort-direction", thisDefault)
-    }
 }
-
-// // function change(selector) {
-//    element = document.querySelector(selector)
-//   console.log(element)
-//   if (element.classList) {
-//     element.classList.toggle("change")
-//   } else {
-//     // For IE9
-//     var classes = element.className.split(" ")
-//     var i = classes.indexOf("change")
-
-//     if (i >= 0)
-//       classes.splice(i, 1)
-//     else
-//       classes.push("change")
-//     element.className = classes.join(" ")
-//   }
-// }
-
-// function changeThis() {
-//   console.log(this)
-//   if (this.classList) {
-//     this.classList.toggle("change")
-//   } else {
-//     // For IE9
-//     var classes = this.className.split(" ")
-//     var i = classes.indexOf("change")
-
-//     if (i >= 0)
-//       classes.splice(i, 1)
-//     else
-//       classes.push("change")
-//     this.className = classes.join(" ")
-//   }
-// }
 
 function filterSearch() {
     let input, cards, content;
@@ -244,69 +219,61 @@ function filter(attr, attrValue) {
     }
 }
 
-function clearFilters() {
-    // get all applicable elements
-    cards = document.getElementsByClassName("review");
-    tags = document.getElementsByClassName("tag");
+function sortBy(attr) {
+    let sortDirection, cards, sortOptions;
 
-    // clear the search bar and filter array
-	filters = [];
-    document.getElementById("filter-input").value = "";
-    
-    // show all the cards
-	for (var i = 0; i < cards.length; i++) {
-        cards[i].classList.remove("d-none");
-        cards[i].classList.add("d-flex");
+    // get the current sorting direction of the filter
+    sortDirection = this.getAttribute("data-sort-direction");
+
+    // get all the cards to be sorted
+	cards = document.getElementsByClassName("review");
+	// magically coerce into an array first
+	cards = Array.prototype.slice.call(cards);
+	cards.sort(function (a, b) {
+		return a.getAttribute(attr).localeCompare(b.getAttribute(attr));
+    });
+
+    // sort the cards in normal or reverse order
+    if (sortDirection == "off") {
+        this.setAttribute("data-sort-direction", "forward");
+    } else if (sortDirection == "forward") {
+        Array.prototype.reverse.call(cards);
+        this.setAttribute("data-sort-direction", "reverse");
+    } else if (sortDirection == "reverse") {
+        cards.sort(function (a, b) {
+            return a.getAttribute("data-date").localeCompare(b.getAttribute("data-date"));
+        });
+        Array.prototype.reverse.call(cards);
+        this.setAttribute("data-sort-direction", "off");
     }
-    
-    // reset the filter buttons
-	for (var i = 0; i < tags.length; i++) {
-		tags[i].setAttribute("data-click", "no");
+
+    // do the actual sorting
+    for (var i = 0; i < cards.length; i++) {
+        // store the parent node so we can reattach the item
+        var parent = cards[i].parentNode;
+        // detach it from wherever it is in the DOM
+        var detatchedItem = parent.removeChild(cards[i]);
+        // reattach it.  This works because we are iterating
+        // over the items in the same order as they were re-
+        // turned from being sorted.
+        parent.appendChild(detatchedItem);
     }
 
-    sortBy("data-date");
-}
+    // return the other sorting options to their default state 
+    // so that they start again normally next time they are used.
+    // the default states for each sorting button
+    let defaults = {
+        sortName: "off",
+        sortCompany: "off",
+        sortProduct: "off",
+        sortDate: "reverse"
+    }
 
-$("#scrollToFilters").click(function () {
-    $('html, body').animate({
-        scrollTop: $("#filters").offset().top
-    }, 2000);
-});
-
-function showHint(str) {
-	if (str.length == 0) {
-		document.getElementById("txtHint").innerHTML = "";
-		return;
-	} else {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById(
-					"txtHint"
-				).innerHTML = this.responseText;
-			}
-		};
-		xmlhttp.open("GET", "search.php?q=" + str, true);
-		xmlhttp.send();
-	}
-}
-
-function createModal() {
-    let title, content, text;
-
-    // get info from selected card
-    title = this.querySelector("h5").innerText;
-    content = this.querySelector('.content').innerHTML;
-
-    // create the modal and add all necessary attributes, classes, and info
-    modal = document.createElement("div");
-    modal.id = "modal";
-    modal.className = "modal fade";
-    modal.tabIndex = "-1";
-    modal.role = "dialog";
-    modal.innerHTML = `<div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="exampleModalLabel">${title}</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="modal.remove();"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body d-flex flex-column">${content}</div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="modal.remove();">Close</button> </div> </div> </div>`;
-    document.body.appendChild(modal); 
-
-    // open the modal
-    $("#modal").modal();
+    // get all the sorting buttons not in use, then set their sort directions to default
+    sortOptions = document.querySelectorAll(`[data-sort-direction]:not(#${this.id})`);
+    for (let i = 0; i < sortOptions.length; i++) {
+        let thisDefault = defaults[sortOptions[i].id];
+        console.log(sortOptions[i].id + ": " + thisDefault);
+        sortOptions[i].setAttribute("data-sort-direction", thisDefault)
+    }
 }
