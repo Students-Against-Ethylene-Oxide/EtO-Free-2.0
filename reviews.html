@@ -92,17 +92,25 @@
                         </div>
                     
                         <div id="collapseZero" class="collapse" data-parent="#accordion" aria-labelledby="headingZero">
-                            <button class="btn btn-dark rounded-0 w-100" onclick="sortBy('data-name');" ontouchstart="sortBy('data-name');">
+                            <button id="sortName" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-name');" ontouchstart="sortBy('data-name');" data-sort-direction="off">
                                 A to Z 
+                                <i class="fa fa-caret-down forward"></i>
+                                <i class="fa fa-caret-up reverse"></i>
                             </button>
-                            <button class="btn btn-dark rounded-0 w-100" onclick="sortBy('data-company');" ontouchstart="sortBy('data-company');">
+                            <button id="sortCompany" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-company');" ontouchstart="sortBy('data-company');" data-sort-direction="off">
                                 Company 
+                                <i class="fa fa-caret-down forward"></i>
+                                <i class="fa fa-caret-up reverse"></i>
                             </button>
-                            <button class="btn btn-dark rounded-0 w-100" onclick="sortBy('data-prodtype');" ontouchstart="sortBy('data-prodtype');">
-                                Product 
+                            <button id="sortProduct" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-prodtype');" ontouchstart="sortBy('data-prodtype');" data-sort-direction="off">
+                                Product Type
+                                <i class="fa fa-caret-down forward"></i>
+                                <i class="fa fa-caret-up reverse"></i>
                             </button>
-                            <button class="btn btn-dark rounded-0 w-100" onclick="sortBy('data-date');" ontouchstart="sortBy('data-date');">
+                            <button id="sortDate" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-date');" ontouchstart="sortBy('data-date');" data-sort-direction="reverse">
                                 Release Date 
+                                <i class="fa fa-caret-down forward"></i>
+                                <i class="fa fa-caret-up reverse"></i>
                             </button>
                         </div>
                     </div>

@@ -193,8 +193,8 @@ footer span a {
 }
 
 button[data-click='yes'] {
-    border-color: var(--white);
-    background-color: var(--white);
+    background-color: var(--orange);
+    border-color: var(--orange);
     color: var(--oxford-blue);
 }
 
@@ -208,4 +208,39 @@ button[data-click='yes'] {
 
 .tags {
     color: #44bba4ff;
+}
+
+button[data-sort-direction="forward"], 
+button[data-sort-direction="reverse"] {
+    background-color: var(--turquoise);
+    border-color: var(--turquoise);
+    color: var(--oxford-blue);
+}
+
+#sortDate[data-sort-direction="reverse"] {
+    background-color: var(--oxford-blue);
+    border-color: var(--oxford-blue);
+    color: var(--white);
+}
+
+button[data-sort-direction="off"] i.forward, 
+button[data-sort-direction="reverse"] i.forward {
+    display: none;
+}
+
+button[data-sort-direction="forward"] i.forward {
+    display: initial;
+}
+
+button[data-sort-direction="off"] i.reverse, 
+button[data-sort-direction="forward"] i.reverse {
+    display: none;
+}
+
+button[data-sort-direction="reverse"] i.reverse {
+    display: initial;
+}
+
+#sortDate[data-sort-direction="reverse"] i.reverse {
+    display: none;
 }

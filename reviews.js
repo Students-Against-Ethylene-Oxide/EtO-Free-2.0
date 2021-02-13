@@ -66,37 +66,59 @@ function parseList(str) {
 }
 
 function sortBy(attr) {
+    let sortDirection, cards, sortOptions;
+
+    // get the current sorting direction of the filter
+    sortDirection = this.getAttribute("data-sort-direction");
+
+    // get all the cards to be sorted
 	cards = document.getElementsByClassName("review");
 	// magically coerce into an array first
-	cardArray = Array.prototype.slice.call(cards);
-
-	cardArray.sort(function (a, b) {
+	cards = Array.prototype.slice.call(cards);
+	cards.sort(function (a, b) {
 		return a.getAttribute(attr).localeCompare(b.getAttribute(attr));
     });
-    // if (attr != "data-date") {
-        for (var i = 0; i < cardArray.length; i++) {
-            // store the parent node so we can reattach the item
-            var parent = cardArray[i].parentNode;
-            // detach it from wherever it is in the DOM
-            var detatchedItem = parent.removeChild(cardArray[i]);
-            // reattach it.  This works because we are iterating
-            // over the items in the same order as they were re-
-            // turned from being sorted.
-            parent.appendChild(detatchedItem);
-        }
-    // } else {
-    //     let temp = cardArray.reverse;
-    //     for (var i = 0; i < temp.length; i++) {
-    //         // store the parent node so we can reattach the item
-    //         var parent = cardArray[i].parentNode;
-    //         // detach it from wherever it is in the DOM
-    //         var detatchedItem = parent.removeChild(cardArray[i]);
-    //         // reattach it.  This works because we are iterating
-    //         // over the items in the same order as they were re-
-    //         // turned from being sorted.
-    //         parent.appendChild(detatchedItem);
-    //     }
-    // }
+
+    // sort the cards in normal or reverse order
+    if (sortDirection == "off") {
+        this.setAttribute("data-sort-direction", "forward");
+    } else if (sortDirection == "forward") {
+        Array.prototype.reverse.call(cards);
+        this.setAttribute("data-sort-direction", "reverse");
+    } else if (sortDirection == "reverse") {
+        cards.sort(function (a, b) {
+            return a.getAttribute("data-date").localeCompare(b.getAttribute("data-date"));
+        });
+        Array.prototype.reverse.call(cards);
+        this.setAttribute("data-sort-direction", "off");
+    }
+
+    for (var i = 0; i < cards.length; i++) {
+        // store the parent node so we can reattach the item
+        var parent = cards[i].parentNode;
+        // detach it from wherever it is in the DOM
+        var detatchedItem = parent.removeChild(cards[i]);
+        // reattach it.  This works because we are iterating
+        // over the items in the same order as they were re-
+        // turned from being sorted.
+        parent.appendChild(detatchedItem);
+    }
+
+    // return the other sorting options to their default state 
+    // so that they start again normally next time they are used.
+    let defaults = {
+        sortName: "off",
+        sortCompany: "off",
+        sortProduct: "off",
+        sortDate: "reverse"
+    }
+
+    sortOptions = document.querySelectorAll(`[data-sort-direction]:not(#${this.id})`);
+    for (let i = 0; i < sortOptions.length; i++) {
+        let thisDefault = defaults[sortOptions[i].id];
+        console.log(sortOptions[i].id + ": " + thisDefault);
+        sortOptions[i].setAttribute("data-sort-direction", thisDefault)
+    }
 }
 
 // // function change(selector) {
