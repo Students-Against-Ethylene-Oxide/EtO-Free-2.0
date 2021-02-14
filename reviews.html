@@ -67,7 +67,7 @@
             <aside id="filters" class="col-md-4 col-lg-3 blog-sidebar mx-0 p-2 sticky-top">
                 <div class="px-0 pb-3 border-0">
                     <div class="input-group">
-                        <input id="filter-input" class="form-control" type="text" placeholder="Filter reviews"
+                        <input id="filter-input" class="form-control" type="text" placeholder="Search reviews"
                             aria-label="Filter reviews" onkeyup="filterSearch();">
                         <div class="input-group-append">
                             <button class="btn btn-outline-dark fa fa-times" type="button" onclick="clearFilters()"></button>
@@ -102,7 +102,7 @@
                                 <i class="fa fa-caret-down forward"></i>
                                 <i class="fa fa-caret-up reverse"></i>
                             </button>
-                            <button id="sortProduct" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-prodtype');" ontouchstart="sortBy('data-prodtype');" data-sort-direction="off">
+                            <button id="sortProduct" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-producttype');" ontouchstart="sortBy('data-producttype');" data-sort-direction="off">
                                 Product Type
                                 <i class="fa fa-caret-down forward"></i>
                                 <i class="fa fa-caret-up reverse"></i>
@@ -148,56 +148,32 @@
                     </div> -->
 
                     <div class="border-0 rounded-0">
-                        <div class="border-bottom" id="headingTwo">
+                        <div class="border-bottom" id="prodTypeLabel">
                             <button class="btn btn-link collapsed text-dark w-100" 
                                 data-toggle="collapse" 
-                                data-target="#collapseTwo"
+                                data-target="#producttype"
                                 aria-expanded="false" 
-                                aria-controls="collapseTwo">
+                                aria-controls="producttype">
                                     Product Type
                             </button>
                         </div>
 
-                        <div id="collapseTwo" class="collapse" data-parent="#accordion" aria-labelledby="headingTwo">
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-prodtype', 'cleanser');" ontouchstart="filter.call(this, 'data-prodtype', 'cleanser');" data-click="no">
-                                Cleansers 
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-prodtype', 'gel');" ontouchstart="filter.call(this, 'data-prodtype', 'gel');" data-click="no">
-                                Gel 
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-prodtype', 'serum');" ontouchstart="filter.call(this, 'data-prodtype', 'serum');" data-click="no">
-                                Serums 
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-prodtype', 'sunscreen');" ontouchstart="filter.call(this, 'data-prodtype', 'sunscreen');" data-click="no">
-                                Sunscreens 
-                            </button>
+                        <div id="producttype" class="collapse" data-parent="#accordion" aria-labelledby="prodTypeLabel">
                         </div>
                     </div>
 
                     <div class="border-0 rounded-0">
-                        <div class="border-bottom" id="headingThree">
+                        <div class="border-bottom" id="companyLabel">
                             <button class="btn btn-link collapsed text-dark w-100" 
                             data-toggle="collapse"
-                            data-target="#collapseThree" 
+                            data-target="#company" 
                             aria-expanded="false" 
-                            aria-controls="collapseThree">
+                            aria-controls="company">
                                 Company
                             </button>
                         </div>
 
-                        <div id="collapseThree" class="collapse" data-parent="#accordion" aria-labelledby="headingThree">
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-company', 'FirstAidBeauty');" ontouchstart="filter.call(this, 'data-company', 'FirstAidBeauty');" data-click="no">
-                                First Aid Beauty
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-company', 'Naturium');" ontouchstart="filter.call(this, 'data-company', 'Naturium');" data-click="no">
-                                Naturium
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-company', 'Skinowl');" ontouchstart="filter.call(this, 'data-company', 'Skinowl');" data-click="no">
-                                SkinOwl
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-company', 'ThesisBeauty');" ontouchstart="filter.call(this, 'data-company', 'ThesisBeauty');" data-click="no">
-                                Thesis Beauty
-                            </button>
+                        <div id="company" class="collapse" data-parent="#accordion" aria-labelledby="companyLabel">
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,3 @@
-var filters = [];
-
 document.addEventListener("DOMContentLoaded", () => {
 	cardrow = document.getElementById("reviews-cards");
 	let firebaseRef = firebase
@@ -13,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Setting firebase data to a variable called "data"
 			data = snapshot.val();
 			idArray = Object.keys(data);
-			dataArrayValues = Object.values(data);
+            dataArrayValues = Object.values(data);
 
 			// Tables are repeating user information when firebase information updates.
 			cardrow.innerHTML = "";
@@ -23,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     data-company="${dataArrayValues[i].company}" 
                     data-date="${idArray[i]}"
                     data-name="${dataArrayValues[i].title}" 
-                    data-prodtype="${dataArrayValues[i].producttype}" 
+                    data-producttype="${dataArrayValues[i].producttype}" 
                     data-skintype="${dataArrayValues[i].skintype}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
                             <div class="card">
@@ -45,14 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
                                         </ul>
                                     </div>
                                     <div class="mb-1 text-muted">${new Date(idArray[i]).toDateString()}</div>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company}');">#${dataArrayValues[i].company}</a>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype}');">#${dataArrayValues[i].producttype}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company.replace(/\s/g, '')}');">#${dataArrayValues[i].company.replace(/\s/g, '')}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype.toLowerCase()}');">#${dataArrayValues[i].producttype.toLowerCase()}</a>
                                 </div>
                             </div>
                         </a>
                     </div>`
 				);
-			}
+            }
+            addFilters();
 		},
 		function (errorObject) {
 			console.log("The read failed: " + errorObject.code);
@@ -92,10 +91,45 @@ $("#scrollToFilters").click(function () {
     }, 2000);
 });
 
+function addFilters() {
+    let filters,
+        filterTypes,
+        filterTypeValues,
+        accordionCollapse;
+    
+    filters = {
+        company: [],
+        producttype: [],
+        skintype: []
+    }
+    filterTypes = Object.keys(filters);
+
+    for (let i = 0; i < filterTypes.length; i++) {
+        for (let a = 0; a < idArray.length; a++) {
+            if (!(filters[filterTypes[i]].includes(dataArrayValues[a][filterTypes[i]]))) {
+                filters[filterTypes[i]].push(dataArrayValues[a][filterTypes[i]]);
+            }
+        }
+    }
+
+    for (let i = 0; i < filterTypes.length; i++) {
+        filterTypeValues = filters[filterTypes[i]].sort();
+        accordionCollapse = document.getElementById(filterTypes[i]);
+
+        for (let a = 0; a < filterTypeValues.length; a++) {
+            $(`#${filterTypes[i]}`).append(
+                `<button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-${filterTypes[i]}', '${filterTypeValues[a]}');" ontouchstart="filter.call(this, 'data-${filterTypes[i]}', '${filterTypeValues[a]}');" data-click="no">
+                    ${filterTypeValues[a]} 
+                </button>`
+            );
+        }
+    }
+}
+
 function clearFilters() {
     // get all applicable elements
-    cards = document.getElementsByClassName("review");
-    tags = document.getElementsByClassName("tag");
+    let cards = document.querySelectorAll(".review");
+    let tags = document.querySelectorAll(".tag");
 
     // clear the search bar and filter array
 	filters = [];
@@ -113,21 +147,28 @@ function clearFilters() {
     }
 
     // return the cards to their normal order
-	cards = document.getElementsByClassName("review");
+    cards = Array.prototype.slice.call(cards);
     cards.sort(function (a, b) {
         return a.getAttribute("data-date").localeCompare(b.getAttribute("data-date"));
     });
     Array.prototype.reverse.call(cards);
-    this.setAttribute("data-sort-direction", "off");
-    for (var i = 0; i < cards.length; i++) {
-        // store the parent node so we can reattach the item
-        var parent = cards[i].parentNode;
-        // detach it from wherever it is in the DOM
-        var detatchedItem = parent.removeChild(cards[i]);
-        // reattach it.  This works because we are iterating
-        // over the items in the same order as they were re-
-        // turned from being sorted.
+    for (let i = 0; i < cards.length; i++) {
+        let parent = cards[i].parentNode;
+        let detatchedItem = parent.removeChild(cards[i]);
         parent.appendChild(detatchedItem);
+    }
+    
+    let defaults = {
+        sortName: "off",
+        sortCompany: "off",
+        sortProduct: "off",
+        sortDate: "reverse"
+    }
+    
+    sortOptions = document.querySelectorAll(`[data-sort-direction]`);
+    for (let i = 0; i < sortOptions.length; i++) {
+        let thisDefault = defaults[sortOptions[i].id];
+        sortOptions[i].setAttribute("data-sort-direction", thisDefault)
     }
 }
 
@@ -155,67 +196,56 @@ function filterSearch() {
 	}
 }
 
+var filters = [];
 function filter(attr, attrValue) {
 	// declare variables
-	cards = document.getElementsByClassName("review");
-	selector = `[${attr}=${attrValue}]`;
-    // console.log(this.getAttribute("data-click") == "no");
-	// if the filter has not already been clicked, apply filter
-    if (this.getAttribute("data-click") == "no") {
-        // add the filter to an array of applied filters
-        // set the 'clicked' property to yes
-        filters.push(selector);
+    let cards = document.querySelectorAll(".review");
+    let selector = `[${attr}='${attrValue}']`;
+    let selected = [];
+
+    // hide all the cards
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.remove("d-flex");
+        cards[i].classList.add("d-none");
+    }
+    
+	// if the filter has not already been applied, apply the filter
+    if (!(filters.includes(selector))) {
         this.setAttribute("data-click", "yes");
+        filters.push(selector);
 
-        // hide all the cards
-        for (i = 0; i < cards.length; i++) {
-            cards[i].classList.remove("d-flex");
-            cards[i].classList.add("d-none");
-        }
-
-        // for each filter, show any cards that apply
-        for (i = 0; i < filters.length; i++) {
-            selected = document.querySelectorAll(filters[i]);
-
-            for (a = 0; a < selected.length; a++) {
-                selected[a].classList.remove("d-none");
-                selected[a].classList.add("d-flex");
-            }
+        for (let i = 0; i < filters.length; i++) {
+            document.querySelectorAll(filters[i]).forEach(element => {
+                if (!(selected.includes(element))) {
+                    selected.push(element);
+                }
+            });
         }
     } else {
-        // get index of the filter and remove it from the array
-        // set the 'clicked' property to yes
-        index = filters.indexOf(selector);
-        filters.splice(index, 1);
         this.setAttribute("data-click", "no");
-        // console.log(index, filters);
-        
-        // if the array is not empty, repeat the above filtering process
-        if (filters.length != 0) {
-            // hide all the cards
-            for (i = 0; i < cards.length; i++) {
-                cards[i].classList.remove("d-flex");
-                cards[i].classList.add("d-none");
-            }
+        index = filters.indexOf(selector);
+        filters.splice(index);
 
-            // for each filter, show any cards that apply
-            for (i = 0; i < filters.length; i++) {
-                // get a list of all the cards with that filter
-                selected = document.querySelectorAll(filters[i]);
-                // console.log(selected);
-                for (a = 0; a < selected.length; a++) {
-                    selected[a].classList.toggle("d-none");
-                    selected[a].classList.toggle("d-flex");
+        for (let i = 0; i < filters.length; i++) {
+            document.querySelectorAll(filters[i]).forEach(element => {
+                if (!(selected.includes(element))) {
+                    selected.push(element);
                 }
-            }
-        // if the array is empty, show all the cards
-        } else {
-			// show all the cards
-			for (i = 0; i < cards.length; i++) {
-				cards[i].classList.remove("d-none");
-				cards[i].classList.add("d-flex");
-			}
-		}
+            });
+        }
+    }
+
+    // show all cards that meet the criteria of the filters
+    if (selected.length == 0) {
+        for (i = 0; i < cards.length; i++) {
+            cards[i].classList.remove("d-none");
+            cards[i].classList.add("d-flex");
+        }
+    } else {
+        for (i = 0; i < selected.length; i++) {
+            selected[i].classList.remove("d-none");
+            selected[i].classList.add("d-flex");
+        }
     }
 }
 
@@ -226,7 +256,8 @@ function sortBy(attr) {
     sortDirection = this.getAttribute("data-sort-direction");
 
     // get all the cards to be sorted
-	cards = document.getElementsByClassName("review");
+    cards = document.querySelectorAll(".review");
+    
 	// magically coerce into an array first
 	cards = Array.prototype.slice.call(cards);
 	cards.sort(function (a, b) {
@@ -273,7 +304,6 @@ function sortBy(attr) {
     sortOptions = document.querySelectorAll(`[data-sort-direction]:not(#${this.id})`);
     for (let i = 0; i < sortOptions.length; i++) {
         let thisDefault = defaults[sortOptions[i].id];
-        console.log(sortOptions[i].id + ": " + thisDefault);
         sortOptions[i].setAttribute("data-sort-direction", thisDefault)
     }
 }
