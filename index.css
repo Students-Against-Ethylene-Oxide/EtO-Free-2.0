@@ -26,11 +26,43 @@ font-family: 'Seaweed Script', cursive;
     --oxford-blue: #0b132bff;
 }
 
+@keyframes startup {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+main {
+    opacity: 0;
+    animation: startup 1s ease-in-out 1s;
+}
+
 /* template styles */
 
 .blog-header {
     line-height: 1;
-    border-bottom: 1px solid var(--lightgrey);
+}
+
+.header-border {
+    background-color: var(--lightgrey);
+    height: 1px;
+    margin: auto;
+    width: 100%;
+    animation: header-border 0.5s cubic-bezier(.45,.05,.55,.95);
+}
+
+@keyframes header-border {
+    from {
+        opacity: 50%;
+        width: 0px;
+    }
+    to {
+        opacity: 100%;
+        width: 100%;
+    }
 }
 
 .blog-header-logo {
@@ -96,10 +128,6 @@ h1, h2, h3, h4, h5, h6 {
     -ms-flex: 0 0 auto;
     -webkit-box-flex: 0;
     flex: 0 0 auto;
-}
-
-.h-250 {
-    height: 250px;
 }
 
 @media (min-width: 768px) {
@@ -196,10 +224,6 @@ button[data-click='yes'] {
     background-color: var(--orange);
     border-color: var(--orange);
     color: var(--oxford-blue);
-}
-
-#navigation a:last-child {
-    display: none;
 }
 
 .content {
