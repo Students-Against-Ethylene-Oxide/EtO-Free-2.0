@@ -31,15 +31,6 @@ main {
     transition: opacity 1s 1s ease-in-out;
 }
 
-/* @keyframes startup {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%;
-    }
-} */
-
 /* template styles */
 
 .blog-header {
