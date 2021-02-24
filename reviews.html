@@ -243,10 +243,8 @@
     <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
     
     <script>
-        let main = document.querySelector("main");
-
-        main.addEventListener("animationend", () => {
-            main.style.opacity = "100%";
+        $(function() {
+            $('main').css("opacity", "100%");
         });
     </script>
 

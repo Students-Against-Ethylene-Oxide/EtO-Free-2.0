@@ -26,19 +26,19 @@ font-family: 'Seaweed Script', cursive;
     --oxford-blue: #0b132bff;
 }
 
-@keyframes startup {
+main {
+    opacity: 0;
+    transition: opacity 1s 1s ease-in-out;
+}
+
+/* @keyframes startup {
     from {
         opacity: 0%;
     }
     to {
         opacity: 100%;
     }
-}
-
-main {
-    opacity: 0;
-    animation: startup 1s ease-in-out 1s;
-}
+} */
 
 /* template styles */
 
