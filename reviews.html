@@ -35,7 +35,7 @@
                     <a class="blog-header-logo d-none d-sm-block" href="index.html">EtO-Free</a>
                     <a class="d-block d-sm-none" href="index.html">
                         <img class="img-fluid mx-auto" src="assets/images/logo.png"
-                            style="height: 75px; border: 3px dotted var(--dark); border-radius: 100%;" />
+                            style="height: 75px; border: 3px dotted var(--dark); border-radius: 100%;" alt="logo"/>
                     </a>
                 </div>
                 <div class="col-3 align-self-right text-right">
@@ -57,7 +57,7 @@
 
     <main role="main" class="container my-5">
         <div class="d-block d-md-none card">
-            <button id="scrollToFilters" class="btn btn-light w-100"><i class=" fa fa-filter"></i>Filters</button>
+            <button id="scrollToFilters" class="btn btn-light w-100"><em class=" fa fa-filter"></em>Filters</button>
         </div>
         <div class="row">
             <div id="reviews-cards" class="col-md-8 col-lg-9 p-0 d-flex flex-row flex-wrap align-items-stretch">
@@ -87,65 +87,33 @@
                             data-target="#collapseZero"
                             aria-expanded="false" 
                             aria-controls="collapseZero">
-                                Sort By <i class="fa fa-caret-down"></i>
+                                Sort By <em class="fa fa-caret-down"></em>
                             </button>
                         </div>
                     
                         <div id="collapseZero" class="collapse" data-parent="#accordion" aria-labelledby="headingZero">
                             <button id="sortName" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-name');" ontouchstart="sortBy('data-name');" data-sort-direction="off">
                                 A to Z 
-                                <i class="fa fa-caret-down forward"></i>
-                                <i class="fa fa-caret-up reverse"></i>
+                                <em class="fa fa-caret-down forward"></em>
+                                <em class="fa fa-caret-up reverse"></em>
                             </button>
                             <button id="sortCompany" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-company');" ontouchstart="sortBy('data-company');" data-sort-direction="off">
                                 Company 
-                                <i class="fa fa-caret-down forward"></i>
-                                <i class="fa fa-caret-up reverse"></i>
+                                <em class="fa fa-caret-down forward"></em>
+                                <em class="fa fa-caret-up reverse"></em>
                             </button>
                             <button id="sortProduct" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-producttype');" ontouchstart="sortBy('data-producttype');" data-sort-direction="off">
                                 Product Type
-                                <i class="fa fa-caret-down forward"></i>
-                                <i class="fa fa-caret-up reverse"></i>
+                                <em class="fa fa-caret-down forward"></em>
+                                <em class="fa fa-caret-up reverse"></em>
                             </button>
                             <button id="sortDate" class="btn btn-dark rounded-0 w-100" onclick="sortBy.call(this, 'data-date');" ontouchstart="sortBy('data-date');" data-sort-direction="reverse">
                                 Release Date 
-                                <i class="fa fa-caret-down forward"></i>
-                                <i class="fa fa-caret-up reverse"></i>
+                                <em class="fa fa-caret-down forward"></em>
+                                <em class="fa fa-caret-up reverse"></em>
                             </button>
                         </div>
                     </div>
-
-                    <!-- <div class="border-0 rounded-0">
-                        <div class="border-bottom" id="headingOne">
-                            <button class="btn btn-link collapsed text-dark w-100"
-                            data-toggle="collapse" 
-                            data-target="#collapseOne" 
-                            aria-expanded="false" 
-                            aria-controls="collapseOne">
-                                Skin Type
-                            </button>
-                        </div>
-
-                        <div id="collapseOne" class="collapse" data-parent="#accordion" aria-labelledby="headingOne">
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-skintype', 'any');" ontouchstart="filter.call(this, 'data-skintype', 'any');" data-click="no">
-                                Any
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-skintype', 'oily');" ontouchstart="filter.call(this, 'data-skintype', 'oily');" data-click="no">
-                                Oily 
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-skintype', 'dry');" ontouchstart="filter.call(this, 'data-skintype', 'dry');" data-click="no">
-                                Dry 
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-skintype', 'combo');" ontouchstart="filter.call(this, 'data-skintype', 'combo');" data-click="no">
-                                Combination 
-                            </button>
-                            <button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-skintype', 'normal');" ontouchstart="filter.call(this, 'data-skintype', 'normal');" data-click="no">
-                                Normal 
-                            </button>
-                            <a role="button" class="btn btn-info rounded-0 w-100" href="https://www.youtube.com/watch?v=vic-EMOivpA&app=desktop" target="_blank">
-                                <i> Help! I don't know what my skin type is! </i></a>
-                        </div>
-                    </div> -->
 
                     <div class="border-0 rounded-0">
                         <div class="border-bottom" id="prodTypeLabel">
@@ -177,15 +145,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="p-3">
-                    <h4 class="font-italic">Elsewhere</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ol>
-                </div> -->
             </aside><!-- /.blog-sidebar -->
         </div> <!-- /.row -->
     </main><!-- /.container -->
@@ -198,11 +157,10 @@
             <em>EtO-Free is a SAEtO-sponsored group. For more information, please visit the website <a class="links" href="https://saeto.org" target="_blank">here.</a></em>
         </p>
         <span>
-            <a href="https://www.facebook.com/StudentsAgainstEthyleneOxide/" target="_blank"><i class='fab fa-facebook-square'></i></a>
-            <a href="https://www.instagram.com/eto.free/" target="_blank"><i class='fab fa-instagram'></i></a>
-            <!-- <a href="https://twitter.com/ethyleneofree" target="_blank"><i class='fab fa-twitter'></i></a> -->
-            <a href="https://www.youtube.com/channel/UCCn6rB_FHHjlK51wkFqOHdQ" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@eto.free?lang=en" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/StudentsAgainstEthyleneOxide/" target="_blank"><em class='fab fa-facebook-square'></em></a>
+            <a href="https://www.instagram.com/eto.free/" target="_blank"><em class='fab fa-instagram'></em></a>
+            <a href="https://www.youtube.com/channel/UCCn6rB_FHHjlK51wkFqOHdQ" target="_blank"><em class="fab fa-youtube"></em></a>
+            <a href="https://www.tiktok.com/@eto.free?lang=en" target="_blank"><em class="fab fa-tiktok"></em></a>
         </span>
         <p>
             <a href="#">Back to top</a>
@@ -243,8 +201,9 @@
     <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
     
     <script>
-        $(function() {
+        $(window).on("load", function () {
             $('main').css("opacity", "100%");
+            console.log("done");
         });
     </script>
 
