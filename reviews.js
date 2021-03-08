@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Setting firebase data to a variable called "data"
 			let data = snapshot.val();
             let idArray = Object.keys(data);
-            console.log(data)
             let dataArrayValues = Object.values(data);
 
 			// Tables are repeating user information when firebase information updates.
@@ -19,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = idArray.length - 1; i >= 0; i--) {
 				$("#reviews-cards").append(
                     `<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column"
-                    data-filters="${JSON.stringify(dataArrayValues[i].filters)}" 
+                    data-company="${dataArrayValues[i].company}" 
+                    data-producttype="${dataArrayValues[i].producttype}" 
                     data-date="${idArray[i]}"
                     data-name="${dataArrayValues[i].title}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
@@ -42,15 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
                                         </ul>
                                     </div>
                                     <div class="mb-1 text-muted">${new Date(idArray[i]).toDateString()}</div>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].filters.company.replace(/\s/g, '')}');">#${dataArrayValues[i].filters.company.replace(/\s/g, '')}</a>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].filters.producttype.toLowerCase()}');">#${dataArrayValues[i].filters.producttype.toLowerCase()}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company.replace(/\s/g, '')}');">#${dataArrayValues[i].company.replace(/\s/g, '')}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype.toLowerCase()}');">#${dataArrayValues[i].producttype.toLowerCase()}</a>
                                 </div>
                             </div>
                         </a>
                     </div>`
 				);
             }
-            addFilters(dataArrayValues);
+            // addFilters(dataArrayValues);
 		},
 		function (errorObject) {
 			console.log("The read failed: " + errorObject.code);
@@ -90,36 +90,36 @@ $("#scrollToFilters").click(function () {
     }, 2000);
 });
 
-function addFilters(dataArray, index) {
-    let filters,
-        filterTypes,
-        filterTypeValues;
+// function addFilters(dataArray, index) {
+//     let filters,
+//         filterTypes,
+//         filterTypeValues;
     
-    filters = {
-        company: [],
-        producttype: [],
-        skintype: []
-    }
+//     filters = {
+//         company: [],
+//         producttype: [],
+//         skintype: []
+//     }
     
-    filterTypes = ["company", "producttype", "skintype"];
+//     filterTypes = ["company", "producttype", "skintype"];
     
-    for (let a = 0; a < filterTypes.length; a++) {
-        for (let i = 0; i < dataArray.length; i++) {
-            if (!( filters[filterTypes[a]].includes( dataArray[i].filters[filterTypes[a]] ) )) {
-                filters[filterTypes[a]][i] = dataArray[i].filters[filterTypes[a]];
-            }
-        }
+//     for (let a = 0; a < filterTypes.length; a++) {
+//         for (let i = 0; i < dataArray.length; i++) {
+//             if (!( filters[filterTypes[a]].includes( dataArray[i].filters[filterTypes[a]] ) )) {
+//                 filters[filterTypes[a]][i] = dataArray[i].filters[filterTypes[a]];
+//             }
+//         }
 
-        filterTypeValues = filters[filterTypes[a]].filter(x => x).sort();
-        for (let i = 0; i < filterTypeValues.length; i++) {
-            $(`#${filterTypes[a]}`).append(
-                `<button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" ontouchstart="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" data-click="no">
-                    ${filterTypeValues[i]} 
-                </button>`
-            );
-        }
-    }
-}
+//         filterTypeValues = filters[filterTypes[a]].filter(x => x).sort();
+//         for (let i = 0; i < filterTypeValues.length; i++) {
+//             $(`#${filterTypes[a]}`).append(
+//                 `<button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" ontouchstart="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" data-click="no">
+//                     ${filterTypeValues[i]} 
+//                 </button>`
+//             );
+//         }
+//     }
+// }
 
 function clearFilters() {
     // get all applicable elements
@@ -195,7 +195,7 @@ var appliedFilters = [];
 function filter(attr, attrValue) {
 	// declare variables
     let cards = document.querySelectorAll(".review");
-    let selector = `[${attr}='${attrValue}']`;
+    let selector = `[${attr}="${attrValue}"]`;
     let selected = [];
 
     // hide all the cards
@@ -203,8 +203,8 @@ function filter(attr, attrValue) {
         cards[i].classList.remove("d-flex");
         cards[i].classList.add("d-none");
     }
-    
-	// if the filter has not already been applied, apply the filter
+	
+    // if the filter has not already been applied, apply the filter
     if (!(appliedFilters.includes(selector))) {
         this.setAttribute("data-click", "yes");
         appliedFilters.push(selector);
