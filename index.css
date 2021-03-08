@@ -238,24 +238,24 @@ button[data-sort-direction="reverse"] {
     color: var(--white);
 }
 
-button[data-sort-direction="off"] i.forward, 
-button[data-sort-direction="reverse"] i.forward {
+button[data-sort-direction="off"] em.forward, 
+button[data-sort-direction="reverse"] em.forward {
     display: none;
 }
 
-button[data-sort-direction="forward"] i.forward {
+button[data-sort-direction="forward"] em.forward {
     display: initial;
 }
 
-button[data-sort-direction="off"] i.reverse, 
-button[data-sort-direction="forward"] i.reverse {
+button[data-sort-direction="off"] em.reverse, 
+button[data-sort-direction="forward"] em.reverse {
     display: none;
 }
 
-button[data-sort-direction="reverse"] i.reverse {
+button[data-sort-direction="reverse"] em.reverse {
     display: initial;
 }
 
-#sortDate[data-sort-direction="reverse"] i.reverse {
+#sortDate[data-sort-direction="reverse"] em.reverse {
     display: none;
 }
