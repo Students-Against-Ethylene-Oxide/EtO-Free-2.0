@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let cardrow = document.getElementById("reviews-cards");
 	let firebaseRef = firebase
 		.database()
-		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Testing Sheet/");
+		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Reviews/");
 
 	// Attach an asynchronous callback to read the data at our posts reference
 	firebaseRef.on(
@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		function (snapshot) {
 			// Setting firebase data to a variable called "data"
 			let data = snapshot.val();
-			let idArray = Object.keys(data);
+            let idArray = Object.keys(data);
+            console.log(data)
             let dataArrayValues = Object.values(data);
 
 			// Tables are repeating user information when firebase information updates.
