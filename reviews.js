@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                         </ul>
                                     </div>
                                     <div class="mb-1 text-muted">${new Date(idArray[i]).toDateString()}</div>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].filters.company.replace(/\s/g, '')}');">#${dataArrayValues[i].filters.company.replace(/\s/g, '')}</a>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].filters.producttype.toLowerCase()}');">#${dataArrayValues[i].filters.producttype.toLowerCase()}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].filters.company}');">#${dataArrayValues[i].filters.company.replace(/\s/g, '')}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-producttype', '${dataArrayValues[i].filters.producttype}');">#${dataArrayValues[i].filters.producttype.toLowerCase()}</a>
                                 </div>
                             </div>
                         </a>
