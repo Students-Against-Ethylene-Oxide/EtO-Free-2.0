@@ -89,7 +89,6 @@ $("#scrollToFilters").click(function () {
     }, 2000);
 });
 
-<<<<<<< HEAD
 function addFilters(dataArray) {
     let filters, filterTypes, filterTypeValues;
     
