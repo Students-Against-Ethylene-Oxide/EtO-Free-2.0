@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 $("#reviews-cards").append(
                     `<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column"
                     data-filters='${JSON.stringify(dataArrayValues[i].filters)}'
+                    data-company='${dataArrayValues[i].filters.company}'
+                    data-producttype='${dataArrayValues[i].filters.producttype}'
+                    data-skintype='${dataArrayValues[i].filters.skintype}'
                     data-date="${idArray[i]}"
                     data-name="${dataArrayValues[i].title}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
@@ -190,7 +193,7 @@ var appliedFilters = [];
 function filter(attr, attrValue) {
 	// declare variables
     let cards = document.querySelectorAll(".review");
-    let selector = `[${attr}='${attrValue.toLowerCase()}'i]`;
+    let selector = `[${attr}='${attrValue}']`;
     let selected = [];
     console.log("you selected " + selector);
 
