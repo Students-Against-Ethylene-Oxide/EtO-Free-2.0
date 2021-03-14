@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Tables are repeating user information when firebase information updates.
 			cardrow.innerHTML = "";
             for (let i = idArray.length - 1; i >= 0; i--) {
-				$("#reviews-cards").append(
+                $("#reviews-cards").append(
                     `<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column"
-                    data-company="${dataArrayValues[i].company}" 
-                    data-producttype="${dataArrayValues[i].producttype}" 
+                    data-producttype='${dataArrayValues[i].filters.producttype}'
+                    data-company='${dataArrayValues[i].filters.company}'
                     data-date="${idArray[i]}"
                     data-name="${dataArrayValues[i].title}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
@@ -42,15 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
                                         </ul>
                                     </div>
                                     <div class="mb-1 text-muted">${new Date(idArray[i]).toDateString()}</div>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].company.replace(/\s/g, '')}');">#${dataArrayValues[i].company.replace(/\s/g, '')}</a>
-                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].producttype.toLowerCase()}');">#${dataArrayValues[i].producttype.toLowerCase()}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-company', '${dataArrayValues[i].filters.company.replace(/\s/g, '')}');">#${dataArrayValues[i].filters.company.replace(/\s/g, '')}</a>
+                                    <a class="badge badge-light tags" href="#" data-click="no" onclick="filter.call(this, 'data-prodtype', '${dataArrayValues[i].filters.producttype.toLowerCase()}');">#${dataArrayValues[i].filters.producttype.toLowerCase()}</a>
                                 </div>
                             </div>
                         </a>
                     </div>`
 				);
             }
-            // addFilters(dataArrayValues);
+            addFilters(dataArrayValues);
 		},
 		function (errorObject) {
 			console.log("The read failed: " + errorObject.code);
@@ -90,36 +90,31 @@ $("#scrollToFilters").click(function () {
     }, 2000);
 });
 
-// function addFilters(dataArray, index) {
-//     let filters,
-//         filterTypes,
-//         filterTypeValues;
+function addFilters(dataArray) {
+    let filters, filterTypes, filterTypeValues;
     
-//     filters = {
-//         company: [],
-//         producttype: [],
-//         skintype: []
-//     }
+    filters = dataArray[0].filters;
     
-//     filterTypes = ["company", "producttype", "skintype"];
-    
-//     for (let a = 0; a < filterTypes.length; a++) {
-//         for (let i = 0; i < dataArray.length; i++) {
-//             if (!( filters[filterTypes[a]].includes( dataArray[i].filters[filterTypes[a]] ) )) {
-//                 filters[filterTypes[a]][i] = dataArray[i].filters[filterTypes[a]];
-//             }
-//         }
+    filterTypes = Object.keys(dataArray[0].filters);
 
-//         filterTypeValues = filters[filterTypes[a]].filter(x => x).sort();
-//         for (let i = 0; i < filterTypeValues.length; i++) {
-//             $(`#${filterTypes[a]}`).append(
-//                 `<button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" ontouchstart="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" data-click="no">
-//                     ${filterTypeValues[i]} 
-//                 </button>`
-//             );
-//         }
-//     }
-// }
+    for (let a = 0; a < filterTypes.length; a++) {
+        filters[filterTypes[a]] = Array();
+        for (let i = 0; i < dataArray.length; i++) {
+            if (!(filters[filterTypes[a]].includes(dataArray[i].filters[filterTypes[a]]))) {
+                filters[filterTypes[a]].push(dataArray[i].filters[filterTypes[a]]);
+            }
+        }
+
+        filterTypeValues = filters[filterTypes[a]].filter(x => x).sort();
+        for (let i = 1; i < filterTypeValues.length; i++) {
+            $(`#${filterTypes[a]}`).append(
+                `<button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" ontouchstart="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" data-click="no">
+                    ${filterTypeValues[i]} 
+                </button>`
+            );
+        }
+    }
+}
 
 function clearFilters() {
     // get all applicable elements
@@ -195,8 +190,9 @@ var appliedFilters = [];
 function filter(attr, attrValue) {
 	// declare variables
     let cards = document.querySelectorAll(".review");
-    let selector = `[${attr}="${attrValue}"]`;
+    let selector = `[${attr}='${attrValue}'i]`;
     let selected = [];
+    console.log("you selected " + selector);
 
     // hide all the cards
     for (let i = 0; i < cards.length; i++) {
@@ -208,6 +204,7 @@ function filter(attr, attrValue) {
     if (!(appliedFilters.includes(selector))) {
         this.setAttribute("data-click", "yes");
         appliedFilters.push(selector);
+        console.log("filtering: " + appliedFilters);
 
         for (let i = 0; i < appliedFilters.length; i++) {
             document.querySelectorAll(appliedFilters[i]).forEach(element => {
@@ -220,6 +217,7 @@ function filter(attr, attrValue) {
         this.setAttribute("data-click", "no");
         let index = appliedFilters.indexOf(selector);
         appliedFilters.splice(index);
+        console.log("filtering: " + appliedFilters);
 
         for (let i = 0; i < appliedFilters.length; i++) {
             document.querySelectorAll(appliedFilters[i]).forEach(element => {
@@ -229,6 +227,8 @@ function filter(attr, attrValue) {
             });
         }
     }
+
+    console.log(selected);
 
     // show all cards that meet the criteria of the filters
     if (selected.length == 0) {
