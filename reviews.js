@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let cardrow = document.getElementById("reviews-cards");
 	let firebaseRef = firebase
 		.database()
-		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Reviews/");
+		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Testing Sheet/");
 
 	// Attach an asynchronous callback to read the data at our posts reference
 	firebaseRef.on(
@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = idArray.length - 1; i >= 0; i--) {
                 $("#reviews-cards").append(
                     `<div id="${dataArrayValues[i].name}"class="review col-lg-4 p-2 m-0 d-flex flex-column"
-                    data-producttype='${dataArrayValues[i].filters.producttype}'
-                    data-company='${dataArrayValues[i].filters.company}'
+                    data-filters='${JSON.stringify(dataArrayValues[i].filters)}'
                     data-date="${idArray[i]}"
                     data-name="${dataArrayValues[i].title}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
@@ -90,6 +89,7 @@ $("#scrollToFilters").click(function () {
     }, 2000);
 });
 
+<<<<<<< HEAD
 function addFilters(dataArray) {
     let filters, filterTypes, filterTypeValues;
     
@@ -112,6 +112,7 @@ function addFilters(dataArray) {
                     ${filterTypeValues[i]} 
                 </button>`
             );
+            console.log(filterTypes[a], filterTypeValues[i]);
         }
     }
 }
