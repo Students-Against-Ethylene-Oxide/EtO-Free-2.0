@@ -190,7 +190,7 @@ var appliedFilters = [];
 function filter(attr, attrValue) {
 	// declare variables
     let cards = document.querySelectorAll(".review");
-    let selector = `[${attr}='${attrValue}'i]`;
+    let selector = `[${attr}='${attrValue.toLowerCase()}'i]`;
     let selected = [];
     console.log("you selected " + selector);
 
