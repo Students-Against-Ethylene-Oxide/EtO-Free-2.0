@@ -93,28 +93,26 @@ $("#scrollToFilters").click(function () {
 });
 
 function addFilters(dataArray) {
-    let filters, filterTypes, filterTypeValues;
-    
-    filters = dataArray[0].filters;
-    
-    filterTypes = Object.keys(dataArray[0].filters);
+    let filterKeys = Object.keys(dataArray[0].filters);
 
-    for (let a = 0; a < filterTypes.length; a++) {
-        filters[filterTypes[a]] = Array();
-        for (let i = 0; i < dataArray.length; i++) {
-            if (!(filters[filterTypes[a]].includes(dataArray[i].filters[filterTypes[a]]))) {
-                filters[filterTypes[a]].push(dataArray[i].filters[filterTypes[a]]);
-            }
+    for (let key of filterKeys) {
+        let filterSet = new Set;
+        for (let dataSet of dataArray) {
+            filterSet.add(dataSet.filters[key]);
         }
 
-        filterTypeValues = filters[filterTypes[a]].filter(x => x).sort();
-        for (let i = 1; i < filterTypeValues.length; i++) {
-            $(`#${filterTypes[a]}`).append(
-                `<button class="tag btn btn-dark rounded-0 w-100" onclick="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" ontouchstart="filter.call(this, 'data-${filterTypes[a]}', '${filterTypeValues[i]}');" data-click="no">
-                    ${filterTypeValues[i]} 
+        filterSet = Array.from(filterSet).sort();
+
+        for (let value of filterSet) {
+            $(`#${key}`).append(
+                `<button 
+                    class="tag btn btn-dark rounded-0 w-100"
+                    onclick="filter.call(this, 'data-${key}', '${value}');" 
+                    ontouchstart="filter.call(this, 'data-${key}', '${value}');"
+                    data-click="no">
+                    ${value} 
                 </button>`
             );
-            console.log(filterTypes[a], filterTypeValues[i]);
         }
     }
 }
@@ -129,14 +127,14 @@ function clearFilters() {
     document.getElementById("filter-input").value = "";
     
     // show all the cards
-	for (let i = 0; i < cards.length; i++) {
-        cards[i].classList.remove("d-none");
-        cards[i].classList.add("d-flex");
+	for (let elem of cards) {
+        elem.classList.remove("d-none");
+        elem.classList.add("d-flex");
     }
     
     // reset the filter buttons
-	for (let i = 0; i < tags.length; i++) {
-		tags[i].setAttribute("data-click", "no");
+	for (let tag of tags) {
+		tag.setAttribute("data-click", "no");
     }
 
     // return the cards to their normal order
@@ -145,9 +143,9 @@ function clearFilters() {
         return a.getAttribute("data-date").localeCompare(b.getAttribute("data-date"));
     });
     Array.prototype.reverse.call(cards);
-    for (let i = 0; i < cards.length; i++) {
-        let parent = cards[i].parentNode;
-        let detatchedItem = parent.removeChild(cards[i]);
+    for (let elem of cards) {
+        let parent = elem.parentNode;
+        let detatchedItem = parent.removeChild(elem);
         parent.appendChild(detatchedItem);
     }
     
@@ -159,9 +157,9 @@ function clearFilters() {
     }
     
     let sortOptions = document.querySelectorAll(`[data-sort-direction]`);
-    for (let i = 0; i < sortOptions.length; i++) {
-        let thisDefault = defaults[sortOptions[i].id];
-        sortOptions[i].setAttribute("data-sort-direction", thisDefault)
+    for (let opt of sortOptions) {
+        let thisDefault = defaults[opt.id];
+        opt.setAttribute("data-sort-direction", thisDefault)
     }
 }
 
@@ -172,19 +170,19 @@ function filterSearch() {
 	cards = document.getElementsByClassName("review");
     
     // hide all the cards
-    for (let i = 0; i < cards.length; i++) {
-        cards[i].classList.remove('d-flex');
-        cards[i].classList.add("d-none");
+    for (let elem of cards) {
+        elem.classList.remove('d-flex');
+        elem.classList.add("d-none");
     }
 
     // shows any cards that contain the search term
-	for (let i = 0; i < cards.length; i++) {
-		content = cards[i].innerHTML.toLowerCase();
+	for (let elem of cards) {
+		content = elem.innerHTML.toLowerCase();
         content = content.replace(/(<([^>]+)>)/gi, "");
 
         if (content.includes(input)) {
-            cards[i].classList.remove("d-none");
-            cards[i].classList.add("d-flex");
+            elem.classList.remove("d-none");
+            elem.classList.add("d-flex");
         }
 	}
 }
@@ -198,9 +196,9 @@ function filter(attr, attrValue) {
     console.log("you selected " + selector);
 
     // hide all the cards
-    for (let i = 0; i < cards.length; i++) {
-        cards[i].classList.remove("d-flex");
-        cards[i].classList.add("d-none");
+    for (let elem of cards) {
+        elem.classList.remove("d-flex");
+        elem.classList.add("d-none");
     }
 	
     // if the filter has not already been applied, apply the filter
@@ -209,8 +207,8 @@ function filter(attr, attrValue) {
         appliedFilters.push(selector);
         console.log("filtering: " + appliedFilters);
 
-        for (let i = 0; i < appliedFilters.length; i++) {
-            document.querySelectorAll(appliedFilters[i]).forEach(element => {
+        for (let filterItem of appliedFilters) {
+            document.querySelectorAll(filterItem).forEach(element => {
                 if (!(selected.includes(element))) {
                     selected.push(element);
                 }
@@ -222,8 +220,8 @@ function filter(attr, attrValue) {
         appliedFilters.splice(index);
         console.log("filtering: " + appliedFilters);
 
-        for (let i = 0; i < appliedFilters.length; i++) {
-            document.querySelectorAll(appliedFilters[i]).forEach(element => {
+        for (let filterItem of appliedFilters) {
+            document.querySelectorAll(filterItem).forEach(element => {
                 if (!(selected.includes(element))) {
                     selected.push(element);
                 }
@@ -235,14 +233,14 @@ function filter(attr, attrValue) {
 
     // show all cards that meet the criteria of the filters
     if (selected.length == 0) {
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].classList.remove("d-none");
-            cards[i].classList.add("d-flex");
+        for (let elem of cards) {
+            elem.classList.remove("d-none");
+            elem.classList.add("d-flex");
         }
     } else {
-        for (let i = 0; i < selected.length; i++) {
-            selected[i].classList.remove("d-none");
-            selected[i].classList.add("d-flex");
+        for (let selection of selected) {
+            selection.classList.remove("d-none");
+            selection.classList.add("d-flex");
         }
     }
 }
@@ -277,11 +275,11 @@ function sortBy(attr) {
     }
 
     // do the actual sorting
-    for (let i = 0; i < cards.length; i++) {
+    for (let elem of cards) {
         // store the parent node so we can reattach the item
-        let parent = cards[i].parentNode;
+        let parent = elem.parentNode;
         // detach it from wherever it is in the DOM
-        let detatchedItem = parent.removeChild(cards[i]);
+        let detatchedItem = parent.removeChild(elem);
         // reattach it.  This works because we are iterating
         // over the items in the same order as they were re-
         // turned from being sorted.
@@ -300,8 +298,8 @@ function sortBy(attr) {
 
     // get all the sorting buttons not in use, then set their sort directions to default
     sortOptions = document.querySelectorAll(`[data-sort-direction]:not(#${this.id})`);
-    for (let i = 0; i < sortOptions.length; i++) {
-        let thisDefault = defaults[sortOptions[i].id];
-        sortOptions[i].setAttribute("data-sort-direction", thisDefault)
+    for (let opt of sortOptions) {
+        let thisDefault = defaults[opt.id];
+        opt.setAttribute("data-sort-direction", thisDefault)
     }
 }

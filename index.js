@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-	cardrow = document.getElementById("posts-cards");
+	let cardrow = document.getElementById("posts-cards");
 	let firebaseRef = firebase
 		.database()
 		.ref("1CWF0D-CWs-MV4Kr1qCJSyUk0EVzy7LeRsn9WMrIT7BA/Reviews/");
@@ -9,11 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		"value",
 		function (snapshot) {
 			// Setting firebase data to a variable called "data"
-			data = snapshot.val();
-			dataArray = [];
-
-			idArray = Object.keys(data);
-			dataArrayValues = Object.values(data);
+			let data = snapshot.val();
+			let idArray = Object.keys(data);
+			let dataArrayValues = Object.values(data);
 
 			// Tables are repeating user information when firebase information updates.
 			cardrow.innerHTML = "";
