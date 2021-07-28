@@ -26,13 +26,265 @@ font-family: 'Seaweed Script', cursive;
     --oxford-blue: #0b132bff;
 }
 
+body {
+    background-color: var(--white);
+    color: var(--oxford-blue);
+    scroll-behavior: smooth;
+}
+
 main {
     opacity: 0;
     transition: opacity 1s 1s ease-in-out;
 }
 
-/* template styles */
+input[type="text"] {
+    background-color: inherit;
+}
 
+/* modified bootstrap */
+a {
+    color: var(--turquoise);
+}
+
+a:hover {
+    color: var(--yellow);
+}
+
+caption {
+    color: var(--lightgrey);
+}
+
+mark {
+    background-color: var(--white);
+}
+
+.blockquote-footer {
+    color: var(--lightgrey);
+}
+
+.btn {
+    color: var(--oxford-blue);
+}
+
+.btn-light {
+    color: var(--oxford-blue);
+    background-color: var(--offwhite);
+    border-color: var(--offwhite);
+}
+
+.btn-light:hover {
+    color: var(--oxford-blue);
+}
+
+.btn-light:focus,
+.btn-light.focus {
+    color: var(--oxford-blue);
+}
+
+.btn-light.disabled,
+.btn-light:disabled {
+    color: var(--oxford-blue);
+    background-color: var(--offwhite);
+    border-color: var(--offwhite);
+}
+
+.btn-light:not(:disabled):not(.disabled):active,
+.btn-light:not(:disabled):not(.disabled).active,
+.show>.btn-light.dropdown-toggle {
+    color: var(--oxford-blue);
+}
+
+.btn-dark {
+    color: var(--white);
+    background-color: var(--oxford-blue);
+    border-color: var(--oxford-blue);
+}
+
+.btn-dark:hover {
+    color: var(--offwhite);
+    background-color: #080e20;
+    border-color: var(--white);
+}
+
+.btn-dark:focus,
+.btn-dark.focus {
+    color: var(--offwhite);
+    background-color: #080e20;
+    border-color: var(--white);
+    box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+}
+
+.btn-dark.disabled,
+.btn-dark:disabled {
+    color: var(--offwhite);
+    background-color: #040710;
+    border-color: var(--oxford-blue);
+}
+
+.btn-dark:not(:disabled):not(.disabled):active,
+.btn-dark:not(:disabled):not(.disabled).active,
+.show>.btn-dark.dropdown-toggle {
+    color: var(--white);
+    background-color: #1d2124;
+    border-color: #171a1d;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active:focus,
+.btn-dark:not(:disabled):not(.disabled).active:focus,
+.show>.btn-dark.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+}
+
+.btn-outline-dark {
+    color: var(--oxford-blue);
+    border-color: var(--oxford-blue);
+}
+
+.btn-outline-dark:hover {
+    color: var(--white);
+    background-color: var(--oxford-blue);
+    border-color: var(--oxford-blue);
+}
+
+.btn-outline-dark.disabled,
+.btn-outline-dark:disabled {
+    color: var(--oxford-blue);
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled):active,
+.btn-outline-dark:not(:disabled):not(.disabled).active,
+.show>.btn-outline-dark.dropdown-toggle {
+    color: var(--white);
+    background-color: var(--oxford-blue);
+    border-color: var(--oxford-blue);
+}
+
+.badge-light {
+    color: var(--oxford-blue);
+    background-color: var(--offwhite);
+}
+
+a.badge-light:hover,
+a.badge-light:focus {
+    color: var(--oxford-blue);
+}
+
+.jumbotron {
+    background-color: var(--oxford-blue) !important;
+}
+
+.list-group-item-action {
+    color: inherit;
+}
+
+.list-group-item-action:hover,
+.list-group-item-action:focus {
+    background-color: var(--offwhite);
+    color: inherit;
+    opacity: 0.75;
+}
+
+.list-group-item-action:active {
+    color: var(--oxford-blue);
+}
+
+.card {
+    background-color: inherit;
+}
+
+.modal-content {
+    background-color: var(--white);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--offwhite);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--offwhite);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    color: var(--oxford-blue);
+}
+
+.carousel-control-prev:hover,
+.carousel-control-prev:focus,
+.carousel-control-next:hover,
+.carousel-control-next:focus {
+    color: var(--oxford-blue);
+}
+
+.carousel-indicators {
+    bottom: 5%;
+}
+
+.carousel-indicators li {
+    background-color: var(--dark);
+}
+
+.bg-light {
+    background-color: var(--offwhite) !important;
+}
+
+.bg-dark {
+    background-color: var(--oxford-blue) !important;
+}
+
+.border {
+    border: 1px solid var(--offwhite) !important;
+}
+
+.border-top {
+    border-top: 1px solid var(--offwhite) !important;
+}
+
+.border-right {
+    border-right: 1px solid var(--offwhite) !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--offwhite) !important;
+}
+
+.border-left {
+    border-left: 1px solid var(--offwhite) !important;
+}
+
+.border-light {
+    border-color: var(--offwhite) !important;
+}
+
+.border-dark {
+    border-color: var(--oxford-blue) !important;
+}
+
+.border-white {
+    border-color: var(--white) !important;
+}
+
+.text-white {
+    color: var(--white) !important;
+}
+
+.text-light {
+    color: var(--offwhite) !important;
+}
+
+.text-dark {
+    color: var(--oxford-blue) !important;
+}
+
+.text-body {
+    color: var(--oxford-blue) !important;
+}
+
+.text-muted {
+    color: var(--lightgrey) !important;
+}
+
+/* template styles */
 .blog-header {
     line-height: 1;
 }
@@ -42,7 +294,7 @@ main {
     height: 1px;
     margin: auto;
     width: 100%;
-    animation: header-border 0.5s cubic-bezier(.45,.05,.55,.95);
+    animation: header-border 0.5s cubic-bezier(.45, .05, .55, .95);
 }
 
 @keyframes header-border {
@@ -50,6 +302,7 @@ main {
         opacity: 50%;
         width: 0px;
     }
+
     to {
         opacity: 100%;
         width: 100%;
@@ -69,7 +322,12 @@ main {
     text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
@@ -225,7 +483,7 @@ button[data-click='yes'] {
     color: #44bba4ff;
 }
 
-button[data-sort-direction="forward"], 
+button[data-sort-direction="forward"],
 button[data-sort-direction="reverse"] {
     background-color: var(--turquoise);
     border-color: var(--turquoise);
@@ -238,7 +496,7 @@ button[data-sort-direction="reverse"] {
     color: var(--white);
 }
 
-button[data-sort-direction="off"] em.forward, 
+button[data-sort-direction="off"] em.forward,
 button[data-sort-direction="reverse"] em.forward {
     display: none;
 }
@@ -247,7 +505,7 @@ button[data-sort-direction="forward"] em.forward {
     display: initial;
 }
 
-button[data-sort-direction="off"] em.reverse, 
+button[data-sort-direction="off"] em.reverse,
 button[data-sort-direction="forward"] em.reverse {
     display: none;
 }
