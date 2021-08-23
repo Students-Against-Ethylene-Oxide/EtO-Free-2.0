@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     data-name="${dataArrayValues[i].title}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
                             <div class="card">
-                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpeg'" alt="Card image cap" >
+                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src=''" alt="Image of ${dataArrayValues[i].title}" >
                                 <div class="card-body">
                                     <h5 class="card-title">${dataArrayValues[i].title}</h5>
                                     <div class="content">

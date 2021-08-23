@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			cardrow.innerHTML = "";
             for (let i = idArray.length - 1; i > idArray.length - 3; i--) {
 				$("#posts-cards").append(
-					`<div class="col-md-6">
+					`<div class="review col-md-6">
                         <div class="card flex-md-row mb-4 box-shadow h-md-250">
                             <div class="card-body d-flex flex-column align-items-start w-100 w-lg-50">
                                 <h4 class="mb-0">
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <a href="reviews.html#${dataArrayValues[i].name}">Continue reading</a>
                             </div>
 							<div class="d-none d-lg-flex flex-column align-items-center w-50" style="overflow: hidden;">
-								<img class="card-img-right d-none d-lg-block" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src='assets/images/${dataArrayValues[i].name}.jpeg'" alt="Card image cap" style="object-fit: cover;">
+								<img class="card-img-right d-none d-lg-block" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src=''" alt="Image of ${dataArrayValues[i].title}" style="object-fit: cover;">
 							</div>
                         </div>
 					</div>`

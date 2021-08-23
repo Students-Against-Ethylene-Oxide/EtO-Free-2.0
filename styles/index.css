@@ -285,6 +285,7 @@ a.badge-light:focus {
 }
 
 /* template styles */
+
 .blog-header {
     line-height: 1;
 }
@@ -397,9 +398,7 @@ h6 {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-/*
- * Blog name and description
- */
+/* Blog name and description */
 
 .blog-title {
     margin-bottom: 0;
@@ -428,9 +427,7 @@ h6 {
     border-radius: 2rem;
 }
 
-/*
- * Blog posts
- */
+/* Blog posts */
 
 .blog-post {
     margin-bottom: 4rem;
@@ -446,9 +443,7 @@ h6 {
     color: var(--lightgrey);
 }
 
-/*
- * Footer
- */
+/* Footer */
 
 .blog-footer {
     padding: 2.5rem 0;
@@ -481,6 +476,10 @@ button[data-click='yes'] {
 
 .tags {
     color: #44bba4ff;
+}
+
+.review img[src=''] {
+    display: none!important;
 }
 
 button[data-sort-direction="forward"],
