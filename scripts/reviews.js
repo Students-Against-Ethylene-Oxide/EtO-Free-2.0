@@ -206,27 +206,19 @@ function filter(attr, attrValue) {
         this.setAttribute("data-click", "yes");
         appliedFilters.push(selector);
         console.log("filtering: " + appliedFilters);
-
-        for (let filterItem of appliedFilters) {
-            document.querySelectorAll(filterItem).forEach(element => {
-                if (!(selected.includes(element))) {
-                    selected.push(element);
-                }
-            });
-        }
     } else {
         this.setAttribute("data-click", "no");
         let index = appliedFilters.indexOf(selector);
         appliedFilters.splice(index);
         console.log("filtering: " + appliedFilters);
+    }
 
-        for (let filterItem of appliedFilters) {
-            document.querySelectorAll(filterItem).forEach(element => {
-                if (!(selected.includes(element))) {
-                    selected.push(element);
-                }
-            });
-        }
+    for (let filterItem of appliedFilters) {
+        document.querySelectorAll(filterItem).forEach(element => {
+            if (!(selected.includes(element))) {
+                selected.push(element);
+            }
+        });
     }
 
     console.log(selected);
@@ -280,14 +272,11 @@ function sortBy(attr) {
         let parent = elem.parentNode;
         // detach it from wherever it is in the DOM
         let detatchedItem = parent.removeChild(elem);
-        // reattach it.  This works because we are iterating
-        // over the items in the same order as they were re-
-        // turned from being sorted.
+        // reattach it.
         parent.appendChild(detatchedItem);
     }
 
-    // return the other sorting options to their default state 
-    // so that they start again normally next time they are used.
+    // return the other sorting options to their default state
     // the default states for each sorting button
     let defaults = {
         sortName: "off",
