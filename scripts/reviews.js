@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     data-name="${dataArrayValues[i].title}">
                         <a href="#" onclick="createModal.call(this);" class="list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#modal">
                             <div class="card">
-                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src=''" alt="Image of ${dataArrayValues[i].title}" >
+                                <img class="card-img-top" src="assets/images/${dataArrayValues[i].name}.jpg" onerror="this.onerror = null; this.src=''" alt="Image of ${dataArrayValues[i].title}">
                                 <div class="card-body">
                                     <h5 class="card-title">${dataArrayValues[i].title}</h5>
                                     <div class="content">
@@ -123,7 +123,7 @@ function clearFilters() {
     let tags = document.querySelectorAll(".tag");
 
     // clear the search bar and filter array
-	appliedFilters = [];
+	appliedFilters.length = 0;
     document.getElementById("filter-input").value = "";
     
     // show all the cards
@@ -187,13 +187,12 @@ function filterSearch() {
 	}
 }
 
-var appliedFilters = [];
+const appliedFilters = [];
 function filter(attr, attrValue) {
 	// declare variables
     let cards = document.querySelectorAll(".review");
     let selector = `[${attr}='${attrValue}']`;
     let selected = [];
-    console.log("you selected " + selector);
 
     // hide all the cards
     for (let elem of cards) {
@@ -205,23 +204,19 @@ function filter(attr, attrValue) {
     if (!(appliedFilters.includes(selector))) {
         this.setAttribute("data-click", "yes");
         appliedFilters.push(selector);
-        console.log("filtering: " + appliedFilters);
     } else {
         this.setAttribute("data-click", "no");
         let index = appliedFilters.indexOf(selector);
         appliedFilters.splice(index);
-        console.log("filtering: " + appliedFilters);
     }
 
-    for (let filterItem of appliedFilters) {
-        document.querySelectorAll(filterItem).forEach(element => {
-            if (!(selected.includes(element))) {
-                selected.push(element);
-            }
-        });
-    }
+    console.log(appliedFilters);
 
-    console.log(selected);
+    document.querySelectorAll(appliedFilters.join()).forEach(element => {
+        if (!(selected.includes(element))) {
+            selected.push(element);
+        }
+    });
 
     // show all cards that meet the criteria of the filters
     if (selected.length == 0) {
