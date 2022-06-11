@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@400;500;600;700&family=Euphoria+Script&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap')
+
+$dark-sienna: #3d0c11ff
+$orange: #fc7a57ff
+$yellow: #f3b61fff
+$turquoise: #44bba4ff
+$white: #f4ededff
+$offwhite: #eae4e4ff
+$lightgrey: #4c5760ff
+$charcoal: #333e47ff
+$oxfordblue: #0b132bff
+
+@keyframes border-expand
+    from
+        opacity: 0%
+        width: 0px
+
+    to 
+        opacity: 100%
+        width: 100%
+
+body
+    background-color: $white
+    color: $oxfordblue
+    font-family: Lato, Poppins, sans-serif
+    scroll-behavior: smooth
+
+main
+    opacity: 0
+    transition: opacity 1s 1s ease-in-out
+
+input[type="text"]
+    background-color: inherit
+
+a
+    color: $turquoise
+    text-decoration: none
+    animation-direction: reverse
+
+    &:hover
+        color: $yellow
+
+caption
+    color: $lightgrey
+
+mark
+    background-color: $white
+
+.blockquote-footer
+    color: $lightgrey
+
+.btn
+    color: $oxfordblue
+
+    &-light
+        color: $oxfordblue
+        background-color: $offwhite
+        border-color: $offwhite
+
+        &:hover
+            color: $oxfordblue
+
+        &:focus, &.focus
+            color: $oxfordblue
+
+        &:disabled, &.disabled
+            color: $oxfordblue
+            background-color: $offwhite
+            border-color: $offwhite
+
+        &:not(:disabled):note(.disabled):active, 
+        &:not(:disabled):note(.disabled).active,
+        .show > &.dropdown-toggle
+            color: $oxfordblue
+
+    &-dark
+        color: $white
+        background-color: $oxfordblue
+        border-color: $oxfordblue
+
+        &:hover
+            color: $offwhite
+            background-color: #080e20
+            border-color: $white
+
+        &:focus, &.focus
+            color: $offwhite
+            background-color: #080e20
+            border-color: $white
+            box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5)
+
+        &:disabled, &.disabled
+            color: $offwhite
+            background-color: #040710
+            border-color: $oxfordblue
+
+        &:not(:disabled):not(.disabled):active,
+        &:not(:disabled):not(.disabled).active,
+        .show > &.dropdown-toggle
+            color: $white
+            background-color: #1d2124
+            border-color: #171a1d
+
+            &:focus
+                box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5)
+
+    &-outline-dark
+        color: $oxfordblue
+        border-color: $oxfordblue
+
+        &:hover
+            color: $white
+            background-color: $oxfordblue
+            border-color: $oxfordblue
+            
+        &:disabled, &.disabled
+            color: $oxfordblue
+
+        &:not(:disabled):not(.disabled):active,
+        &:not(:disabled):not(.disabled).active,
+        .show > &.dropdown-toggle
+            color: $white
+            background-color: $oxfordblue
+            border-color: $oxfordblue
+
+.badge-light
+    background-color: $offwhite
+    color: $oxfordblue
+
+a.badge-light
+    &:hover, &:focus
+        color: $oxfordblue
+
+.container
+
+.jumbotron
+    background-color: $oxfordblue !important
+
+    h1, h2, h3, h4, h5, h6
+        font-size: 2.5rem
+        font-weight: bold
+
+        @media (min-width: 768px)
+            font-size: 3rem
+
+.list-group-item-action
+    color: inherit
+
+    &:hover, &:focus
+        background: $offwhite
+        color: inherit
+        opacity: 0.75
+
+    &:active
+        color: $oxfordblue
+
+.card
+    background-color: $white
+
+.modal
+    &-content
+        background-color: $white
+
+    &-header
+        border-bottom: 1px solid $offwhite
+
+    &-footer
+        border-top: 1px solid $offwhite
+
+.carousel
+    &-control
+        &-prev, &-next 
+            &, &:hover, &:focus
+                color: $oxfordblue
+
+    &-indicators
+        bottom: 5%
+
+        li
+            background-color: $oxfordblue 
+
+.bg-light
+    background-color: $offwhite !important
+
+.bg-dark
+    background-color: $oxfordblue !important
+
+@mixin border-copy($mod)
+    &#{$mod}
+        border#{$mod}: 1px solid $offwhite !important
+
+@mixin border-color-copy($mod, $color)
+    &#{$mod}
+        border-color: $color !important
+
+.border
+    border: 1px solid $offwhite !important
+    @include border-copy("-top")
+    @include border-copy("-bottom")
+    @include border-copy("-left")
+    @include border-copy("-right")
+    @include border-color-copy("-light", $offwhite)
+    @include border-color-copy("-dark", $oxfordblue)
+    @include border-color-copy("-light", $white)
+
+.text
+    &-white
+        color: $white !important;
+    &-light
+        color: $offwhite !important;
+    &-dark
+        color: $oxfordblue !important;
+    &-body
+        color: $oxfordblue !important;
+    &-muted
+        color: $lightgrey !important;
+
+.blog-header
+    line-height: 1;
+
+.header-border
+    background-color: $lightgrey
+    height: 1px
+    margin: auto
+    width: 100%
+    animation: border-expand 0.5s cubic-bezier(.45, .05, .55, .95)
+
+.blog-header-logo
+    color: $turquoise
+    cursor: pointer
+    display: block
+    font-family: "Euphoria Script", "Dancing Script", cursive
+    font-size: 2.5rem
+    text-decoration: none
+
+    &:hover
+        color: $turquoise
+
+h1, h2, h3, h4, h5, h6
+    font-family: Playfair Display, DM Serif Display, serif
+    font-weight: bold
+
+.nav-scroller
+    position: relative
+    z-index: 2
+    height: 2.75rem
+    overflow-y: hidden
+
+    .nav
+        display: flex
+        flex-wrap: nowrap
+        padding-bottom: 1rem
+        margin-top: -1px
+        overflow-x: auto
+        text-align: center
+        white-space: nowrap
+        -webkit-overflow-scrolling: touch
+
+        a
+            &:hover .border
+                animation: border-expand 0.4s cubic-bezier(.45, .05, .55, .95)
+                animation-direction: normal
+                opacity: 100%
+                width: 100%
+
+            .border
+                animation: border-expand 0.4s cubic-bezier(.45, .05, .55, .95)
+                animation-direction: reverse
+                background-color: $lightgrey
+                height: 1px
+                margin: auto
+                opacity: 0
+                width: 0
+
+.card-img-right
+    height: 100%
+    border-radius: 0 3px 3px 0
+
+.flex-auto
+    flex: 0 0 auto
+
+@media (min-width: 768px)
+    .h-md-250
+        height: 250
+
+.border-top
+    border-top: 1px solid $offwhite
+
+.border-bottom
+    border-bottom: 1px solid $offwhite
+
+.box-shadow
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05)
+
+.blog-pagination
+    margin-bottom: 4rem
+
+    > .btn
+        border-radius: 2rem
+
+.blog-post-title
+    margin-bottom: .25rem
+    font-size: 2.5rem
+
+.blog-post-meta
+    margin-bottom: 1.25rem
+    color: $lightgrey
+
+.blog-footer
+    background-color: $offwhite
+    color: $lightgrey
+    padding: 2.5rem 0
+    text-align: center
+
+    p:last-child
+        margin-bottom: 0
+
+iframe
+    aspect-ratio: 16 / 9
+    height: 100%
+    width: 100%
+
+footer span a
+    font-size: 30px
+    margin: 0 10px
+
+button
+    &[data-click='yes']
+        background-color: $orange
+        border-color: $orange
+        color: $oxfordblue
+    
+    &[data-sort-direction='forward'],
+    &[data-sort-direction='reverse']
+        background-color: $turquoise
+        border-color: $turquoise
+        color: $oxfordblue
+
+    &[data-sort-direction="off"],
+    &[data-sort-direction="reverse"]
+        em.forward
+            display: none
+    
+    &[data-sort-direction="off"],
+    &[data-sort-direction="forward"]
+        em.reverse
+            display: none
+
+    &[data-sort-direction='forward']
+        em.forward
+            display: initial
+
+    &[data-sort-direction='reverse']
+        em.reverse
+            display: initial
+
+.content
+    display: none
+
+.tags
+    color: $turquoise
+    font-weight: bold
+
+.review img[src='']
+    display: none !important
+
+#sortDate[data-sort-direction='reverse']
+    background-color: $oxfordblue
+    border-color: $oxfordblue
+    color: $white
+
+    em.reverse
+        display: none
